@@ -1,0 +1,391 @@
+@import "./variable";
+
+header {
+   @include flexCenter;
+   width: 100%;
+   height: 100px;
+   position: absolute;
+   top: 2%;
+   z-index: 10;
+
+   .wapper {
+      @include flexCenter;
+      @include grassColor;
+      @include mobile {
+         width: 95%;
+         height: 7%;
+
+         .logo {
+            transform: scale(1.4);
+         }
+         .navbar {
+            padding: 4px 18px;
+            transform: scale(1.4);
+            span {
+               display: none;
+            }
+         }
+      }
+      position: fixed;
+      border-radius: 8px;
+      gap: 20%;
+      width: 550px;
+      height: 60px;
+      .logo {
+         align-self: center;
+         a {
+            font-size: $h1-font-size;
+            color: #fff;
+            font-weight: 700;
+            font-family: "Fuzzy Bubbles", cursive;
+         }
+      }
+      .navbar {
+         @include flexCenter;
+         ul {
+            @include flexCenter;
+            li {
+               margin: 4px 12px;
+               background: rgba(150, 131, 131, 0.274);
+               padding: 8px;
+               color: #fff;
+               border-radius: 8px;
+               cursor: pointer;
+
+               span {
+                  margin-bottom: 4px;
+               }
+               ion-icon {
+                  font-size: $h3-font-size;
+               }
+            }
+         }
+         img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+         }
+      }
+   }
+}
+
+#banner {
+   @include flexCenter;
+   @include mobile {
+      height: 136vh;
+   }
+   width: 100%;
+   height: 100vh;
+   overflow: hidden;
+   
+   
+   iframe,
+   .img,
+   video {
+      filter: contrast(110%) brightness(70%);
+      top: 0;
+      left: 0;
+      position: absolute;
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+   p {
+      display: none;
+   }
+}
+}
+.backgroundSetting {
+   @include grassColor;
+   position: absolute;
+   width: 60%;
+   height: 100px;
+   @include mobile {
+      width: 80%;
+   }
+
+   top: 70%;
+   opacity: 0;
+   visibility: hidden;
+
+   z-index: 10;
+   border-radius: 8px;
+   transition: all 1s ease-in-out;
+   padding: 26px 0 0 26px;
+   h1 {
+      font-size: $h1-font-size;
+      font-weight: 600;
+      color: #fff;
+      width: 100%;
+      border-bottom: 2px solid #999;
+   }
+   .themeBlock {
+      overflow: auto;
+      max-height: 85%;
+   }
+   .themeBlock::-webkit-scrollbar {
+      display: none;
+   }
+   .theme,
+   .video {
+      margin-top: 12px;
+      h2 {
+         font-size: $h3-font-size;
+         font-weight: 600;
+         color: #fff;
+      }
+      .videoList,
+      .themeList {
+         @include flexCenter;
+         justify-content: start;
+         flex-wrap: wrap;
+         gap: 30px;
+
+         .themeItem {
+            cursor: pointer;
+            .img,
+            video {
+               width: 150px;
+               height: 100px;
+               border-radius: 8px;
+               background-size: contain;
+            }
+            p {
+               color: #fff;
+            }
+         }
+      }
+   }
+}
+.backgroundSetting::-webkit-scrollbar {
+   display: none;
+}
+
+.bgSettingOpen.backgroundSetting {
+   top: 20%;
+   opacity: 1;
+   height: 540px;
+   visibility: visible;
+}
+.backgroundSetting.bgSettingOpen::after {
+   display: block;
+}
+
+#setting {
+   @include grassColor;
+   position: absolute;
+   opacity: 0;
+   visibility: hidden;
+   transition: all 0.5s linear;
+   top: -15%;
+   right: 25%;
+   transform: scale(0.1);
+   padding: 8px;
+   border-radius: 8px;
+   color: #fff;
+   width: 360px;
+   height: 570px;
+   .heading {
+      text-align: center;
+      border-bottom: 1px solid #999;
+      h1 {
+         font-size: 32px;
+         font-weight: 600;
+         text-shadow: 0 0 3px rgb(4, 153, 252);
+      }
+   }
+   .body {
+      overflow: auto;
+      margin-top: 16px;
+      .timeSetting {
+         @include flexCenter;
+         flex-wrap: wrap;
+         padding-bottom: 16px;
+         border-radius: 8px;
+         .study,
+         .break,
+         .longBreak {
+            width: 100px;
+            @include flexCenter;
+            flex-direction: column;
+            input {
+               width: 80px;
+               height: 40px;
+               border-radius: 8px;
+               outline: none;
+               font-size: 18px;
+               border: none;
+               padding-left: 24px;
+               background-color: rgba(230, 230, 230, 0.897);
+            }
+         }
+
+      }
+      .switchBlock {
+         padding-bottom: 16px;
+         border-radius: 8px;
+         border-bottom: 1px solid #999;
+         h2 {
+            font-size: 18px;
+            font-weight: 400;
+         }
+         .autoBreak,
+         .autoStudy {
+            display: flex;
+            justify-content: space-between;
+            margin: 24px 0;
+            $heightButton: 30px;
+            $widthButton: 70px;
+            label {
+               position: relative;
+               width: $widthButton;
+               height: $heightButton;
+               cursor: pointer;
+               input {
+                  position: absolute;
+                  appearance: none;
+               }
+               input:checked ~ span {
+                  @include grassColor;
+                  background: rgba(0, 255, 0, 0.5);
+                  border: 2px solid #fff;
+               }
+               input:checked ~ span i {
+                  left: 58%;
+               }
+               input:checked ~ span i::before {
+                  background: green;
+                  box-shadow: 11px 0 0 green;
+               }
+               input:checked ~ span i::after {
+                  background: green;
+                  border-radius: 0;
+                  height: 26%;
+                  border-bottom-left-radius: 49px;
+                  border-bottom-right-radius: 49px;
+               }
+
+               span {
+                  position: absolute;
+                  top: 0;
+                  left: 0;
+                  width: 100%;
+                  height: 100%;
+                  @include grassColor;
+                  border: 2px solid #fff;
+                  background: rgba(255, 0, 0, 0.2);
+                  border-radius: 80px;
+                  transition: all 0.5s ease-in-out ;
+
+                  i {
+                     position: absolute;
+                     top: 9%;
+                     left: 3%;
+
+                     width: 37%;
+                     height: 83%;
+                     background: #fff;
+                     border-radius: 50%;
+                     transition: all 0.5s ease-in-out ;
+                  }
+                  i::before {
+                     content: "";
+                     position: absolute;
+                     top: 25%;
+                     left: 20%;
+                     width: 17%;
+                     height: 17%;
+                     border-radius: 50%;
+                     background: rgb(255, 0, 0);
+                     box-shadow: 11px 0 0 red;
+                     transition: all 0.5s ease-in-out ;
+                  }
+                  i::after {
+                     content: "";
+                     position: absolute;
+                     bottom: 15%;
+                     left: 50%;
+                     transform: translateX(-50%);
+                     width: 40%;
+                     height: 7%;
+                     border-radius: 8px;
+                     transition: all 0.5s ease-in-out ;
+                     background: red;
+                  }
+               }
+            }
+         }
+
+         .interval{
+            display: flex;justify-content:space-between;
+            input{
+               width: 70px;
+               height: 30px;
+               border-radius: 16px;
+               outline: none;
+               font-size: 18px;
+               border: none;
+               padding-left: 16px;
+            }
+         }
+      }
+      .apply {
+         margin-top: 16px;
+         width: 100px;
+         text-shadow: 0 0 5px rgb(25, 0, 255);
+         font-size: 18px;
+         float: right;
+      }
+   }
+}
+#setting.settingOpen{
+   top: 15%;
+   right: 2%;
+   opacity: 1;
+   visibility: visible;
+   transform: scale(1);
+}
+
+footer {
+   @include grassColor;
+   @include flexCenter;
+   position: absolute;
+   transition: all 1.5s linear;
+
+   bottom: 4%;
+   min-width: 280px;
+   height: 50px;
+   border-radius: 24px;
+   z-index: 10;
+   @include mobile {
+      transform: scale(1.6);
+   }
+
+   ul {
+      @include flexCenter;
+      gap: 40%;
+      li {
+         margin-top: 8px;
+         ion-icon {
+            font-size: $h1-font-size;
+            color: #fff;
+            cursor: pointer;
+            transition: 0.3s;
+            padding-bottom: 0;
+         }
+      }
+      .feature.openFeature {
+         background: #00a5f827;
+         padding: 2px 8px;
+         transform: scale(1.2);
+         border-radius: 12px;
+      }
+   }
+}
+footer:hover {
+   background: linear-gradient(
+      to right rgba(3, 4, 94, 0.15),
+      rgba(2, 62, 138, 0.15),
+      rgba(0, 119, 182, 0.15),
+      rgba(0, 150, 199, 0.15)
+   );
+}

@@ -1,0 +1,65 @@
+$main-color: 250;
+
+$first-color: hsl($main-color, 69%, 61%);
+$second-color: hsl($main-color, 89%, 11%);
+$title-color: hsl($main-color, 8%, 15%);
+$text-color: hsl($main-color, 8%, 45%);
+$border-color: hsl($main-color, 89%, 11%);
+$input-color: hsl($main-color, 70%, 96%);
+
+$container-color: hsl($main-color, 85%, 96%);
+
+$big-font-size: 32px;
+$h1-font-size: 28px;
+$h2-font-size: 24px;
+$h3-font-size: 20px;
+$h4-font-size: 18px;
+$text-font-size: 16px;
+$text-mini: 12px;
+
+body.dark-theme {
+   $first-color: hsl($main-color, 30%, 8%);
+   $title-color: hsl($main-color, 80%, 90%);
+   $text-color: hsl($main-color, 8%, 75%);
+   $text-color-light: hsl($main-color, 29%, 16%);
+   $input-color: hsl($main-color, 28%, 12%);
+   $container-color: hsl($main-color, 29%, 16%);
+}
+
+@mixin grassColor {
+   background: rgba(255, 255, 255, 0.11);
+   box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+   border: 1px solid rgba(255, 255, 255, 0.5);
+   border-right: 1px solid rgba(255, 255, 255, 0.2);
+   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+@mixin water {
+   width: 150px;height: 150px;
+   border-radius: 50%;
+   box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.05),
+   inset -10px -10px 15px rgba(255, 255, 255, 0.9)
+   15px 25px 10px rgba(0,0,0,0.05),
+   15px 20px 20px rgba(0,0,0,0.05);
+}
+
+
+@mixin flexCenter {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+@mixin mobile {
+   @media (max-width: 740px) {
+      @content;
+   }
+}
+@mixin tabletAndMoblie {
+   @media (max-width: 1024px) {
+      @content;
+   }
+}
+@mixin tablet {
+   @media (max-width: 1024px) {
+      @content;
+   }
+}

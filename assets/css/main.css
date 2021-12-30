@@ -1,0 +1,1555 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Fuzzy+Bubbles:wght@400;700&family=Poppins:ital,wght@0,200;0,500;0,600;0,800;1,300;1,500;1,600;1,800&display=swap");
+.musicBlock {
+  background: rgba(255, 255, 255, 0.11);
+  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  position: fixed;
+  height: 600px;
+  width: 360px;
+  border-radius: 8px;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+  overflow: auto;
+  top: 5%;
+  right: -10%;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 10;
+}
+
+@media (max-width: 740px) {
+  .musicBlock {
+    -webkit-transform: scale(0.3);
+            transform: scale(0.3);
+    top: -10%;
+    right: -20%;
+  }
+}
+
+.musicBlock::-webkit-scrollbar {
+  display: none;
+}
+
+.musicBlock.musicOpen {
+  top: 15%;
+  right: 2%;
+  visibility: visible;
+  opacity: 1;
+}
+
+@media (max-width: 740px) {
+  .musicBlock.musicOpen {
+    right: 50%;
+    top: 16%;
+    -webkit-transform: translateX(50%) scale(1.1);
+            transform: translateX(50%) scale(1.1);
+  }
+}
+
+.musicBlock.musicOpen .player .songTitle {
+  top: 15%;
+}
+
+.player {
+  background: rgba(255, 255, 255, 0.11);
+  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  position: relative;
+  width: 360px;
+}
+
+.player .dashboard {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.player .dashboard .songTitle {
+  color: #fff;
+  width: 360px;
+  text-align: center;
+  top: 2%;
+  margin: 14px 0 0;
+}
+
+.player .dashboard .songTitle h2 {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.player .dashboard .cd {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 16px 0 16px 0;
+}
+
+.player .dashboard .cd .cd-thumb {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-size: cover;
+}
+
+.player .dashboard .control {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #fff;
+  gap: 16px;
+}
+
+.player .dashboard .control ion-icon {
+  background: rgba(255, 255, 255, 0.11);
+  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 4px;
+  border-radius: 50%;
+  font-size: 28px;
+}
+
+.player .dashboard .control .btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.player .dashboard .control .btn:nth-child(3) {
+  width: 40px;
+  height: 40px;
+}
+
+.player .dashboard .control .btn:nth-child(3) ion-icon {
+  font-size: 40px;
+}
+
+.player .dashboard .control .btn-toggle-play ion-icon[name='pause-outline'] {
+  display: none;
+}
+
+.player .dashboard .control .btn-toggle-play.musicPlaying ion-icon[name='pause-outline'] {
+  display: block;
+}
+
+.player .dashboard .control .btn-toggle-play.musicPlaying ion-icon[name='play-outline'] {
+  display: none;
+}
+
+.player .dashboard .control .btn-repeat.active ion-icon,
+.player .dashboard .control .btn-random.active ion-icon {
+  -webkit-box-shadow: 0 0 5px #0747f8;
+          box-shadow: 0 0 5px #0747f8;
+  background: rgba(7, 71, 248, 0.248);
+}
+
+.player .dashboard .progress {
+  margin: 18px 0;
+  width: 90%;
+  height: 6px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-appearance: none;
+  -webkit-transition: 0.2s;
+  -webkit-transition: opacity 0.2s;
+  transition: opacity 0.2s;
+}
+
+.player .dashboard .progress::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: inherit;
+  width: 12px;
+  height: 6px;
+  background-color: red;
+  cursor: pointer;
+}
+
+.player .dashboard .progress::-webkit-progress-value {
+  background-color: #0095dd;
+}
+
+.player .playlist {
+  background: rgba(255, 255, 255, 0.11);
+  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  margin-top: 18px;
+  min-height: 300px;
+  padding: 32px 4px 16px 22px;
+  border-radius: 58px 0 0 0;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.player .playlist .song {
+  background: rgba(255, 255, 255, 0.11);
+  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  margin: 8px 0;
+  padding: 4px;
+  border-radius: 16px 0 16px 8px;
+}
+
+.player .playlist .song .thumb {
+  width: 46px;
+  height: 46px;
+  background-size: cover;
+  border-radius: 50%;
+}
+
+.player .playlist .song .body {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  margin-left: 10px;
+  color: #fff;
+}
+
+.player .playlist .song .body .title {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.player .playlist .song .body .author {
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.player .playlist .song .option {
+  padding-top: 12px;
+}
+
+.player .playlist .song .option ion-icon {
+  color: #fff;
+  font-size: 24px;
+}
+
+.player .playlist .song.active {
+  background: rgba(255, 156, 156, 0.363);
+}
+
+.todo {
+  background: rgba(255, 255, 255, 0.11);
+  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  position: absolute;
+  top: 5%;
+  left: -10%;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 5;
+  width: 360px;
+  height: 600px;
+  border-radius: 8px 0px 0px 8px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+@media (max-width: 740px) {
+  .todo {
+    top: -10%;
+    left: -20%;
+    -webkit-transform: scale(0.3);
+            transform: scale(0.3);
+  }
+}
+
+.todo .inputForm {
+  height: 70px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.todo .inputForm input {
+  border-radius: 8px;
+  width: 90%;
+  height: 40px;
+  border: none;
+  outline: none;
+  padding-left: 16px;
+  font-size: 16px;
+}
+
+.todo .tastList::-webkit-scrollbar {
+  display: none;
+}
+
+.todo .tastList {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  max-height: 500px;
+  overflow: auto;
+}
+
+.todo .tastList .listItem {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: rgba(255, 255, 255, 0.11);
+  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  border-radius: 8px;
+  width: 90%;
+  min-height: 58px;
+  padding: 4px;
+  margin-top: 8px;
+  -webkit-box-shadow: 1px 2px #444 3px;
+          box-shadow: 1px 2px #444 3px;
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+}
+
+.todo .tastList .listItem .listItem_finish {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.todo .tastList .listItem .listItem_finish ion-icon {
+  font-size: 24px;
+  color: #fff;
+}
+
+.todo .tastList .listItem .listItem_detail {
+  -webkit-box-flex: 8;
+      -ms-flex: 8;
+          flex: 8;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  color: #fff;
+}
+
+.todo .tastList .listItem .listItem_detail h1, .todo .tastList .listItem .listItem_detail s {
+  font-size: 16px;
+  font-weight: 400;
+  padding-bottom: 4px;
+}
+
+.todo .tastList .listItem .listItem_detail .listItem_detail-mini {
+  font-size: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.todo .tastList .listItem .listItem_detail .listItem_detail-mini .prioritize {
+  padding: 2px 9px;
+  border-radius: 16px;
+  color: #fff;
+}
+
+.todo .tastList .listItem .listItem_detail .listItem_detail-mini span {
+  margin-right: 38px;
+}
+
+.todo .tastList .listItem .listItem_detail .listItem_detail-mini .prioritize.flag1 {
+  background: #f72727;
+}
+
+.todo .tastList .listItem .listItem_detail .listItem_detail-mini .prioritize.flag2 {
+  background: #f59505;
+}
+
+.todo .tastList .listItem .listItem_detail .listItem_detail-mini .prioritize.flag3 {
+  background: #e7f338;
+}
+
+.todo .tastList .listItem .listItem_detail .listItem_detail-mini .prioritize.flag4 {
+  background: #b3b2b2;
+}
+
+.todo .tastList .listItem .listItem_important {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.todo .tastList .listItem .listItem_important ion-icon {
+  font-size: 24px;
+  color: #fff;
+}
+
+.todo .tastList .listItem .listItem_important.important ion-icon {
+  color: #daf102;
+}
+
+.todo .tastList .listItem_expand {
+  position: absolute;
+  top: -1px;
+  left: 100%;
+  width: 360px;
+  height: 600px;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: 0.8s;
+  transition: 0.8s;
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.11);
+  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0px 8px 8px 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media (max-width: 740px) {
+  .todo .tastList .listItem_expand {
+    top: 15%;
+    left: 0;
+    width: 450px;
+  }
+}
+
+.todo .tastList .listItem_expand .listItem_expand-top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border-radius: 12px 0px 0px 0px;
+  margin-top: 16px;
+  padding: 4px;
+  width: 90%;
+  height: 42px;
+}
+
+.todo .tastList .listItem_expand .listItem_expand-top .listItem_finish,
+.todo .tastList .listItem_expand .listItem_expand-top .listItem_important {
+  float: 1;
+}
+
+.todo .tastList .listItem_expand .listItem_expand-top .listItem_finish ion-icon,
+.todo .tastList .listItem_expand .listItem_expand-top .listItem_important ion-icon {
+  font-size: 24px;
+  color: #fff;
+}
+
+.todo .tastList .listItem_expand .listItem_expand-top .listItem_detail {
+  color: #fff;
+  -webkit-box-flex: 6;
+      -ms-flex: 6;
+          flex: 6;
+}
+
+.todo .tastList .listItem_expand .listItem_expand-top .listItem_detail h1 {
+  font-size: 20px;
+  font-weight: 400;
+  padding: 8px;
+}
+
+.todo .tastList .listItem_expand .inputForm {
+  width: 90%;
+  height: 42px;
+}
+
+.todo .tastList .listItem_expand .inputForm input {
+  width: 95%;
+  background: rgba(255, 255, 255, 0.11);
+  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  border-bottom: 1px solid #999;
+}
+
+.todo .tastList .listItem_expand .inputForm input::-webkit-input-placeholder {
+  color: #dbdbdb;
+}
+
+.todo .tastList .listItem_expand .inputForm input:-ms-input-placeholder {
+  color: #dbdbdb;
+}
+
+.todo .tastList .listItem_expand .inputForm input::-ms-input-placeholder {
+  color: #dbdbdb;
+}
+
+.todo .tastList .listItem_expand .inputForm input::placeholder {
+  color: #dbdbdb;
+}
+
+.todo .tastList .listItem_expand .miniList {
+  width: 95%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+}
+
+.todo .tastList .listItem_expand .miniList .miniList-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  width: 90%;
+  padding: 4px;
+  margin: 4px 4px 4px 16px;
+  -webkit-box-shadow: 0px 1px #999;
+          box-shadow: 0px 1px #999;
+  color: #fff;
+}
+
+.todo .tastList .listItem_expand .miniList .miniList-item ion-icon {
+  font-size: 18px;
+}
+
+.todo .tastList .listItem_expand .miniList .miniList-item h1 {
+  font-size: 16px;
+  font-weight: 500;
+  padding-bottom: 6px;
+  padding-left: 8px;
+}
+
+.todo .tastList .listItem_expand.active {
+  opacity: 1;
+  visibility: visible;
+  left: 100%;
+}
+
+.todo.openTodo {
+  left: 2%;
+  top: 15%;
+  opacity: 1;
+  visibility: visible;
+}
+
+@media (max-width: 740px) {
+  .todo.openTodo {
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    width: 450px;
+    height: 650px;
+  }
+}
+
+.pomodoro {
+  z-index: 10;
+  background: rgba(255, 255, 255, 0.11);
+  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  position: absolute;
+  -webkit-transition: all 1s;
+  transition: all 1s;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 700px;
+  height: 450px;
+}
+
+@media (max-width: 740px) {
+  .pomodoro {
+    width: 95%;
+    height: 600px;
+  }
+}
+
+.pomodoro .title {
+  text-align: center;
+  font-size: 32px;
+}
+
+@media (max-width: 740px) {
+  .pomodoro .title {
+    margin-top: 12px;
+    font-size: 34px;
+  }
+}
+
+.pomodoro .title h1 {
+  color: #fff;
+  font-weight: 400;
+  text-shadow: 0 0 15px #1115f7;
+}
+
+.pomodoro #clock-container {
+  padding-top: 32px;
+  height: 45%;
+}
+
+.pomodoro #task {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #fff;
+  font-size: 24px;
+  margin-bottom: 12px;
+}
+
+.pomodoro #buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+}
+
+.pomodoro #buttons .btn {
+  background: rgba(255, 255, 255, 0.11);
+  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  position: absolute;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  bottom: 5%;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 32px;
+  text-shadow: 0 0 5px #07b1f5;
+  width: 250px;
+  display: none;
+  padding: 4px;
+  cursor: pointer;
+}
+
+@media (max-width: 740px) {
+  .pomodoro #buttons .btn {
+    margin-top: 35px;
+    font-size: 32px;
+    width: 350px;
+    height: 80px;
+  }
+}
+
+.pomodoro #buttons .btn.display {
+  display: block;
+}
+
+.pomodoro #buttons .btnContinue {
+  -webkit-animation: goRight 0.7s;
+          animation: goRight 0.7s;
+  -webkit-transform: translateX(-150px);
+          transform: translateX(-150px);
+}
+
+.pomodoro #buttons .btnExit {
+  -webkit-animation: goLeft 0.7s;
+          animation: goLeft 0.7s;
+  -webkit-transform: translateX(150px);
+          transform: translateX(150px);
+}
+
+@-webkit-keyframes goRight {
+  0% {
+    -webkit-transform: translateX(-50px);
+            transform: translateX(-50px);
+  }
+  100% {
+    -webkit-transform: translateX(-150px);
+            transform: translateX(-150px);
+  }
+}
+
+@keyframes goRight {
+  0% {
+    -webkit-transform: translateX(-50px);
+            transform: translateX(-50px);
+  }
+  100% {
+    -webkit-transform: translateX(-150px);
+            transform: translateX(-150px);
+  }
+}
+
+@-webkit-keyframes goLeft {
+  0% {
+    -webkit-transform: translateX(50px);
+            transform: translateX(50px);
+  }
+  100% {
+    -webkit-transform: translateX(150px);
+            transform: translateX(150px);
+  }
+}
+
+@keyframes goLeft {
+  0% {
+    -webkit-transform: translateX(50px);
+            transform: translateX(50px);
+  }
+  100% {
+    -webkit-transform: translateX(150px);
+            transform: translateX(150px);
+  }
+}
+
+.pomodoro .flip-clock-wrapper {
+  margin: 24px auto 0;
+  max-width: 460px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
+}
+
+@media (max-width: 740px) {
+  .pomodoro .flip-clock-wrapper {
+    -webkit-transform: scale(1.5) translateY(30%);
+            transform: scale(1.5) translateY(30%);
+    width: 62%;
+  }
+}
+
+.pomodoro .flip-clock-wrapper .flip-clock-label {
+  color: #fff;
+  font-size: 14px;
+  margin: auto;
+  right: -100px;
+}
+
+.pomodoro .flip-clock-wrapper .flip {
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-perspective: 1000px;
+          perspective: 1000px;
+}
+
+.pomodoro.pomodoroClose {
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transform: scale(0.1);
+          transform: scale(0.1);
+  left: 0%;
+}
+
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100px;
+  position: absolute;
+  top: 2%;
+  z-index: 10;
+}
+
+header .wapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: rgba(255, 255, 255, 0.11);
+  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  position: fixed;
+  border-radius: 8px;
+  gap: 20%;
+  width: 550px;
+  height: 60px;
+}
+
+@media (max-width: 740px) {
+  header .wapper {
+    width: 95%;
+    height: 7%;
+  }
+  header .wapper .logo {
+    -webkit-transform: scale(1.4);
+            transform: scale(1.4);
+  }
+  header .wapper .navbar {
+    padding: 4px 18px;
+    -webkit-transform: scale(1.4);
+            transform: scale(1.4);
+  }
+  header .wapper .navbar span {
+    display: none;
+  }
+}
+
+header .wapper .logo {
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+header .wapper .logo a {
+  font-size: 28px;
+  color: #fff;
+  font-weight: 700;
+  font-family: "Fuzzy Bubbles", cursive;
+}
+
+header .wapper .navbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .wapper .navbar ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .wapper .navbar ul li {
+  margin: 4px 12px;
+  background: rgba(150, 131, 131, 0.274);
+  padding: 8px;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+header .wapper .navbar ul li span {
+  margin-bottom: 4px;
+}
+
+header .wapper .navbar ul li ion-icon {
+  font-size: 20px;
+}
+
+header .wapper .navbar img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+#banner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+@media (max-width: 740px) {
+  #banner {
+    height: 136vh;
+  }
+}
+
+#banner iframe,
+#banner .img,
+#banner video {
+  -webkit-filter: contrast(110%) brightness(70%);
+          filter: contrast(110%) brightness(70%);
+  top: 0;
+  left: 0;
+  position: absolute;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+#banner iframe p,
+#banner .img p,
+#banner video p {
+  display: none;
+}
+
+.backgroundSetting {
+  background: rgba(255, 255, 255, 0.11);
+  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  position: absolute;
+  width: 60%;
+  height: 100px;
+  top: 70%;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 10;
+  border-radius: 8px;
+  -webkit-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+  padding: 26px 0 0 26px;
+}
+
+@media (max-width: 740px) {
+  .backgroundSetting {
+    width: 80%;
+  }
+}
+
+.backgroundSetting h1 {
+  font-size: 28px;
+  font-weight: 600;
+  color: #fff;
+  width: 100%;
+  border-bottom: 2px solid #999;
+}
+
+.backgroundSetting .themeBlock {
+  overflow: auto;
+  max-height: 85%;
+}
+
+.backgroundSetting .themeBlock::-webkit-scrollbar {
+  display: none;
+}
+
+.backgroundSetting .theme,
+.backgroundSetting .video {
+  margin-top: 12px;
+}
+
+.backgroundSetting .theme h2,
+.backgroundSetting .video h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.backgroundSetting .theme .videoList,
+.backgroundSetting .theme .themeList,
+.backgroundSetting .video .videoList,
+.backgroundSetting .video .themeList {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 30px;
+}
+
+.backgroundSetting .theme .videoList .themeItem,
+.backgroundSetting .theme .themeList .themeItem,
+.backgroundSetting .video .videoList .themeItem,
+.backgroundSetting .video .themeList .themeItem {
+  cursor: pointer;
+}
+
+.backgroundSetting .theme .videoList .themeItem .img,
+.backgroundSetting .theme .videoList .themeItem video,
+.backgroundSetting .theme .themeList .themeItem .img,
+.backgroundSetting .theme .themeList .themeItem video,
+.backgroundSetting .video .videoList .themeItem .img,
+.backgroundSetting .video .videoList .themeItem video,
+.backgroundSetting .video .themeList .themeItem .img,
+.backgroundSetting .video .themeList .themeItem video {
+  width: 150px;
+  height: 100px;
+  border-radius: 8px;
+  background-size: contain;
+}
+
+.backgroundSetting .theme .videoList .themeItem p,
+.backgroundSetting .theme .themeList .themeItem p,
+.backgroundSetting .video .videoList .themeItem p,
+.backgroundSetting .video .themeList .themeItem p {
+  color: #fff;
+}
+
+.backgroundSetting::-webkit-scrollbar {
+  display: none;
+}
+
+.bgSettingOpen.backgroundSetting {
+  top: 20%;
+  opacity: 1;
+  height: 540px;
+  visibility: visible;
+}
+
+.backgroundSetting.bgSettingOpen::after {
+  display: block;
+}
+
+#setting {
+  background: rgba(255, 255, 255, 0.11);
+  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: all 0.5s linear;
+  transition: all 0.5s linear;
+  top: -15%;
+  right: 25%;
+  -webkit-transform: scale(0.1);
+          transform: scale(0.1);
+  padding: 8px;
+  border-radius: 8px;
+  color: #fff;
+  width: 360px;
+  height: 570px;
+}
+
+#setting .heading {
+  text-align: center;
+  border-bottom: 1px solid #999;
+}
+
+#setting .heading h1 {
+  font-size: 32px;
+  font-weight: 600;
+  text-shadow: 0 0 3px #0499fc;
+}
+
+#setting .body {
+  overflow: auto;
+  margin-top: 16px;
+}
+
+#setting .body .timeSetting {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  padding-bottom: 16px;
+  border-radius: 8px;
+}
+
+#setting .body .timeSetting .study,
+#setting .body .timeSetting .break,
+#setting .body .timeSetting .longBreak {
+  width: 100px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#setting .body .timeSetting .study input,
+#setting .body .timeSetting .break input,
+#setting .body .timeSetting .longBreak input {
+  width: 80px;
+  height: 40px;
+  border-radius: 8px;
+  outline: none;
+  font-size: 18px;
+  border: none;
+  padding-left: 24px;
+  background-color: rgba(230, 230, 230, 0.897);
+}
+
+#setting .body .switchBlock {
+  padding-bottom: 16px;
+  border-radius: 8px;
+  border-bottom: 1px solid #999;
+}
+
+#setting .body .switchBlock h2 {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+#setting .body .switchBlock .autoBreak,
+#setting .body .switchBlock .autoStudy {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 24px 0;
+}
+
+#setting .body .switchBlock .autoBreak label,
+#setting .body .switchBlock .autoStudy label {
+  position: relative;
+  width: 70px;
+  height: 30px;
+  cursor: pointer;
+}
+
+#setting .body .switchBlock .autoBreak label input,
+#setting .body .switchBlock .autoStudy label input {
+  position: absolute;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+#setting .body .switchBlock .autoBreak label input:checked ~ span,
+#setting .body .switchBlock .autoStudy label input:checked ~ span {
+  background: rgba(255, 255, 255, 0.11);
+  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(0, 255, 0, 0.5);
+  border: 2px solid #fff;
+}
+
+#setting .body .switchBlock .autoBreak label input:checked ~ span i,
+#setting .body .switchBlock .autoStudy label input:checked ~ span i {
+  left: 58%;
+}
+
+#setting .body .switchBlock .autoBreak label input:checked ~ span i::before,
+#setting .body .switchBlock .autoStudy label input:checked ~ span i::before {
+  background: green;
+  -webkit-box-shadow: 11px 0 0 green;
+          box-shadow: 11px 0 0 green;
+}
+
+#setting .body .switchBlock .autoBreak label input:checked ~ span i::after,
+#setting .body .switchBlock .autoStudy label input:checked ~ span i::after {
+  background: green;
+  border-radius: 0;
+  height: 26%;
+  border-bottom-left-radius: 49px;
+  border-bottom-right-radius: 49px;
+}
+
+#setting .body .switchBlock .autoBreak label span,
+#setting .body .switchBlock .autoStudy label span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.11);
+  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  border: 2px solid #fff;
+  background: rgba(255, 0, 0, 0.2);
+  border-radius: 80px;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+#setting .body .switchBlock .autoBreak label span i,
+#setting .body .switchBlock .autoStudy label span i {
+  position: absolute;
+  top: 9%;
+  left: 3%;
+  width: 37%;
+  height: 83%;
+  background: #fff;
+  border-radius: 50%;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+#setting .body .switchBlock .autoBreak label span i::before,
+#setting .body .switchBlock .autoStudy label span i::before {
+  content: "";
+  position: absolute;
+  top: 25%;
+  left: 20%;
+  width: 17%;
+  height: 17%;
+  border-radius: 50%;
+  background: red;
+  -webkit-box-shadow: 11px 0 0 red;
+          box-shadow: 11px 0 0 red;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+#setting .body .switchBlock .autoBreak label span i::after,
+#setting .body .switchBlock .autoStudy label span i::after {
+  content: "";
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 40%;
+  height: 7%;
+  border-radius: 8px;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  background: red;
+}
+
+#setting .body .switchBlock .interval {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+#setting .body .switchBlock .interval input {
+  width: 70px;
+  height: 30px;
+  border-radius: 16px;
+  outline: none;
+  font-size: 18px;
+  border: none;
+  padding-left: 16px;
+}
+
+#setting .body .apply {
+  margin-top: 16px;
+  width: 100px;
+  text-shadow: 0 0 5px #1900ff;
+  font-size: 18px;
+  float: right;
+}
+
+#setting.settingOpen {
+  top: 15%;
+  right: 2%;
+  opacity: 1;
+  visibility: visible;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+footer {
+  background: rgba(255, 255, 255, 0.11);
+  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  -webkit-transition: all 1.5s linear;
+  transition: all 1.5s linear;
+  bottom: 4%;
+  min-width: 280px;
+  height: 50px;
+  border-radius: 24px;
+  z-index: 10;
+}
+
+@media (max-width: 740px) {
+  footer {
+    -webkit-transform: scale(1.6);
+            transform: scale(1.6);
+  }
+}
+
+footer ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 40%;
+}
+
+footer ul li {
+  margin-top: 8px;
+}
+
+footer ul li ion-icon {
+  font-size: 28px;
+  color: #fff;
+  cursor: pointer;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  padding-bottom: 0;
+}
+
+footer ul .feature.openFeature {
+  background: #00a5f827;
+  padding: 2px 8px;
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+  border-radius: 12px;
+}
+
+footer:hover {
+  background: -webkit-gradient(linear, left top, right top, from(rgba(2, 62, 138, 0.15)), color-stop(rgba(0, 119, 182, 0.15)), to(rgba(0, 150, 199, 0.15)));
+  background: linear-gradient(to right rgba(3, 4, 94, 0.15), rgba(2, 62, 138, 0.15), rgba(0, 119, 182, 0.15), rgba(0, 150, 199, 0.15));
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  scroll-behavior: smooth;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+.container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+@media (max-width: 740px) {
+  .container {
+    width: 136%;
+    height: 100%;
+  }
+}
+
+button {
+  z-index: 1;
+  position: relative;
+  font-size: inherit;
+  font-family: inherit;
+  color: white;
+  padding: 0.5em 1em;
+  outline: none;
+  border: none;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.11);
+  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+button::before {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border-radius: 16px;
+  background-color: #332ffc2a;
+  -webkit-transform-origin: center right;
+          transform-origin: center right;
+  -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+  -webkit-transition: -webkit-transform 0.25s ease-in-out;
+  transition: -webkit-transform 0.25s ease-in-out;
+  transition: transform 0.25s ease-in-out;
+  transition: transform 0.25s ease-in-out, -webkit-transform 0.25s ease-in-out;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+button:hover::before {
+  -webkit-transform-origin: center left;
+          transform-origin: center left;
+  -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+}
+/*# sourceMappingURL=main.css.map */
