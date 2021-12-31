@@ -630,13 +630,13 @@
 }
 
 .pomodoro {
-  z-index: 10;
   background: rgba(255, 255, 255, 0.11);
   -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
           box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-right: 1px solid rgba(255, 255, 255, 0.2);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 10;
   border-radius: 8px;
   position: absolute;
   -webkit-transition: all 1s;
@@ -732,7 +732,7 @@
   .pomodoro #buttons .btn {
     margin-top: 35px;
     font-size: 32px;
-    width: 350px;
+    width: 190px;
     height: 80px;
   }
 }
@@ -839,9 +839,7 @@
 .pomodoro.pomodoroClose {
   opacity: 0;
   visibility: hidden;
-  -webkit-transform: scale(0.1);
-          transform: scale(0.1);
-  left: 0%;
+  top: 70%;
 }
 
 header {

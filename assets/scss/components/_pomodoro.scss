@@ -1,12 +1,12 @@
 @import "variable";
 
 .pomodoro {
-   z-index: 10;
    @include grassColor;
    @include mobile {
       width: 95%;
       height: 600px;
    }
+   z-index: 10;
    border-radius: 8px;
    position: absolute;
    transition: all 1s;
@@ -61,7 +61,7 @@
          @include mobile {
             margin-top: 35px;
             font-size: 32px;
-            width: 350px;
+            width: 190px;
             height: 80px;
          }
       }
@@ -123,6 +123,5 @@
 .pomodoro.pomodoroClose {
    opacity: 0;
    visibility: hidden;
-   transform: scale(0.1);
-   left: 0%;
+   top:70%;
 }

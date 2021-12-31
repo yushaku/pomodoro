@@ -34,7 +34,7 @@
 
          <!-- ?rel=0&autoplay=1 -->
          <div id="banner">
-            <div class="img" style="background: rgba(51, 51, 51, 0.205) url('/assets/img/rose.jpg') no-repeat top left;"></div>
+            <div class="img" style="background: rgba(51, 51, 51, 0.205) url('./assets/img/rose.jpg') no-repeat top left;"></div>
          </div>
 
          <div class="pomodoro">
@@ -47,10 +47,10 @@
             </div>
 
             <div id="task">
-               <span>task here</span>
-               <span>4</span>
+               <span>Try your best </span>
+               <span>10</span>
                <span>/</span>
-               <span>4</span>
+               <span>10</span>
             </div>
             <div id="buttons">
                <button class="btn btnStart display">start</button>
@@ -236,12 +236,12 @@
          const btnExit = $(".btnExit");
          const pip = document.querySelector("#pip");
          const config = JSON.parse(localStorage.getItem("POMODORO_SETTING"));
-         let studyTime = config.studyTime ?? 25;
-         let breakTime = config.breakTime ?? 5;
-         let longBreakTime = config.longBreakTime ?? 15;
+         let studyTime = config.studyTime || 25;
+         let breakTime = config.breakTime || 5;
+         let longBreakTime = config.longBreakTime || 15;
 
          let countSession = 0;
-         let LongbreakInterval = config.breakInerval ?? 4;
+         let LongbreakInterval = config.breakInerval || 4;
          let isAutoStudy = config.autoStartStudy ?? false;
          let isAutoBreak = config.autoStartBreak ?? false;
 
