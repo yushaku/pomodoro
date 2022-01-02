@@ -196,6 +196,7 @@
          
       }
       .TaskInput {
+         @include flexCenter;
          width: 90%;
          padding-left: 15px;
          
@@ -204,7 +205,7 @@
             border-radius: 4px;
             background: rgba(0, 0, 0, 0.3);
             outline: none;
-            height: 32px;
+            height: 34px;
             width: 95%;
             color: #fff;
             padding-left: 8px;
@@ -213,38 +214,39 @@
          input::placeholder{
             color: rgb(219, 219, 219);
          }
+         button{
+            padding: 4px 16px;
+            border-radius: 1px;
+         }
          
       }
       .miniList {
          width: 95%;
-         display: flex;
-         flex-direction: column;
-         justify-content: start;
 
          .miniList-item {
             @include flexCenter;
             justify-content: start;
+            padding-top: 8px;
             width: 90%;
             padding: 4px;
             margin: 4px 4px 4px 16px;
-            box-shadow: 0px 1px #999;
+            box-shadow: 0px 1px rgba(153, 153, 153, 0.411);
             color: #fff;
 
             ion-icon {
-               font-size: $h4-font-size;
+               font-size: $h1-font-size;
+               cursor: pointer;
             }
             h1 {
                font-size: 16px;
                font-weight: 500;
-               padding-bottom: 6px;
                padding-left: 8px;
             }
          }
       }
       .desciption{
-         margin:16px;
-         width: 90%;
-         min-height: 150px;
+         width: 85%;
+         height: 150px;
          background: rgba(0, 0, 0, 0.2);
          color: #fff;
          resize: none;
@@ -252,9 +254,16 @@
          border-radius: 8px;
          margin-top: 16px;
          font-size: $text-font-size;
-         padding-left: 4px;
          &::placeholder{
             color: #fff;
+         }
+      }
+      .btnBLock{
+         margin-top: 16px;
+         @include flexCenter;
+         .btnCancel,
+         .btnSave{
+            width: 150px;
          }
       }
    }

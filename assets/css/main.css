@@ -577,6 +577,15 @@
 }
 
 .todo .listItem_expand .TaskInput {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 90%;
   padding-left: 15px;
 }
@@ -586,7 +595,7 @@
   border-radius: 4px;
   background: rgba(0, 0, 0, 0.3);
   outline: none;
-  height: 32px;
+  height: 34px;
   width: 95%;
   color: #fff;
   padding-left: 8px;
@@ -609,18 +618,13 @@
   color: #dbdbdb;
 }
 
+.todo .listItem_expand .TaskInput button {
+  padding: 4px 16px;
+  border-radius: 1px;
+}
+
 .todo .listItem_expand .miniList {
   width: 95%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: start;
 }
 
 .todo .listItem_expand .miniList .miniList-item {
@@ -636,29 +640,29 @@
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: start;
+  padding-top: 8px;
   width: 90%;
   padding: 4px;
   margin: 4px 4px 4px 16px;
-  -webkit-box-shadow: 0px 1px #999;
-          box-shadow: 0px 1px #999;
+  -webkit-box-shadow: 0px 1px rgba(153, 153, 153, 0.411);
+          box-shadow: 0px 1px rgba(153, 153, 153, 0.411);
   color: #fff;
 }
 
 .todo .listItem_expand .miniList .miniList-item ion-icon {
-  font-size: 18px;
+  font-size: 28px;
+  cursor: pointer;
 }
 
 .todo .listItem_expand .miniList .miniList-item h1 {
   font-size: 16px;
   font-weight: 500;
-  padding-bottom: 6px;
   padding-left: 8px;
 }
 
 .todo .listItem_expand .desciption {
-  margin: 16px;
-  width: 90%;
-  min-height: 150px;
+  width: 85%;
+  height: 150px;
   background: rgba(0, 0, 0, 0.2);
   color: #fff;
   resize: none;
@@ -666,7 +670,6 @@
   border-radius: 8px;
   margin-top: 16px;
   font-size: 16px;
-  padding-left: 4px;
 }
 
 .todo .listItem_expand .desciption::-webkit-input-placeholder {
@@ -683,6 +686,24 @@
 
 .todo .listItem_expand .desciption::placeholder {
   color: #fff;
+}
+
+.todo .listItem_expand .btnBLock {
+  margin-top: 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.todo .listItem_expand .btnBLock .btnCancel,
+.todo .listItem_expand .btnBLock .btnSave {
+  width: 150px;
 }
 
 .todo .listItem_expand.active {

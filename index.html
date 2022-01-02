@@ -84,6 +84,7 @@
                <div class="listItem">
                   <div class="listItem_finish">
                      <ion-icon name="ellipse-outline"></ion-icon>
+                  <audio id="finishTodo" src="./assets/music/finish.mp3"></audio>
                   </div>
                   <div class="listItem_detail">
                      <h1>day là title</h1>
@@ -99,14 +100,15 @@
 
 
             </div>
-            <div class="listItem_expand active">
+            <div class="listItem_expand">
 
                <div class="listItem_expand-top">
                   <h1 contenteditable="true">day là title</h1>
                </div>
 
                <div class="TaskInput">
-                  <input class="miniTaskInput" type="text" placeholder="Add one more step" />
+                  <input class="miniTaskInput" type="text" placeholder="Add one more step..." />
+                  <button class="addMiniTodo">Add</button>
                </div>
 
                <div class="miniList">
