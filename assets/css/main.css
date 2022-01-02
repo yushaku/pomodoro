@@ -293,20 +293,19 @@
   }
 }
 
-.todo .inputForm {
-  height: 70px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+.todo #inputForm {
+  width: 100%;
+  text-align: center;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(26, 147, 247, 0.4)), to(rgba(255, 255, 255, 0.3)));
+  background: linear-gradient(rgba(26, 147, 247, 0.4), rgba(255, 255, 255, 0.3));
+  height: 60px;
+  -webkit-transition: all 0.5s linear;
+  transition: all 0.5s linear;
+  overflow: hidden;
 }
 
-.todo .inputForm input {
+.todo #inputForm .todoInput {
+  margin-top: 8px;
   border-radius: 8px;
   width: 90%;
   height: 40px;
@@ -316,11 +315,69 @@
   font-size: 16px;
 }
 
+.todo #inputForm .todoExpand {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 12px;
+  width: 100%;
+  gap: 8px;
+}
+
+.todo #inputForm .todoExpand .selectInput,
+.todo #inputForm .todoExpand .deadlineInput,
+.todo #inputForm .todoExpand .counterInput {
+  border-radius: 8px;
+  width: 88px;
+  height: 40px;
+  border: none;
+  outline: none;
+  padding-left: 6px;
+  font-size: 16px;
+}
+
+.todo #inputForm .todoExpand .deadlineInput {
+  width: 130px;
+  padding: 0px 0 0 8px;
+}
+
+.todo #inputForm .optionBtn {
+  padding: 38px 0 18px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.todo #inputForm .optionBtn .saveTodo, .todo #inputForm .optionBtn .cancelTodo {
+  width: 40%;
+}
+
+.todo #inputForm.active {
+  height: 200px;
+}
+
 .todo .tastList::-webkit-scrollbar {
   display: none;
 }
 
 .todo .tastList {
+  -webkit-transition: all 0.5s linear;
+  transition: all 0.5s linear;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -367,6 +424,7 @@
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
+  cursor: pointer;
 }
 
 .todo .tastList .listItem .listItem_finish ion-icon {
@@ -411,79 +469,49 @@
 }
 
 .todo .tastList .listItem .listItem_detail .listItem_detail-mini span {
-  margin-right: 38px;
+  margin-right: 28px;
+  color: rgba(0, 255, 34, 0.425);
 }
 
 .todo .tastList .listItem .listItem_detail .listItem_detail-mini .prioritize.flag1 {
-  background: #f72727;
+  background: rgba(255, 0, 0, 0.5);
 }
 
 .todo .tastList .listItem .listItem_detail .listItem_detail-mini .prioritize.flag2 {
-  background: #f59505;
+  background: rgba(245, 149, 5, 0.5);
 }
 
 .todo .tastList .listItem .listItem_detail .listItem_detail-mini .prioritize.flag3 {
-  background: #e7f338;
+  background: rgba(179, 204, 66, 0.5);
 }
 
 .todo .tastList .listItem .listItem_detail .listItem_detail-mini .prioritize.flag4 {
-  background: #b3b2b2;
+  background: rgba(118, 119, 117, 0.5);
 }
 
-.todo .tastList .listItem .listItem_important {
+.todo .tastList .listItem .listItem_trash {
+  cursor: pointer;
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
 }
 
-.todo .tastList .listItem .listItem_important ion-icon {
-  font-size: 24px;
+.todo .tastList .listItem .listItem_trash ion-icon {
+  font-size: 28px;
   color: #fff;
 }
 
-.todo .tastList .listItem .listItem_important.important ion-icon {
-  color: #daf102;
+.todo .tastList.active {
+  max-height: calc(500px - 140px);
 }
 
-.todo .tastList .listItem_expand {
-  position: absolute;
-  top: -1px;
-  left: 100%;
-  width: 360px;
-  height: 600px;
-  opacity: 0;
-  visibility: hidden;
-  -webkit-transition: 0.8s;
-  transition: 0.8s;
-  opacity: 1;
+.todo .listItem_expand {
   background: rgba(255, 255, 255, 0.11);
   -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
           box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-right: 1px solid rgba(255, 255, 255, 0.2);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 0px 8px 8px 0px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-@media (max-width: 740px) {
-  .todo .tastList .listItem_expand {
-    top: 15%;
-    left: 0;
-    width: 450px;
-  }
-}
-
-.todo .tastList .listItem_expand .listItem_expand-top {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -493,74 +521,95 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  position: absolute;
+  overflow: auto;
+  top: -1px;
+  left: 100%;
+  width: 360px;
+  height: 600px;
+  opacity: 0;
+  visibility: hidden;
+  opacity: 1;
+  border-radius: 0px 8px 8px 0px;
+  -webkit-transform-origin: left;
+          transform-origin: left;
+  -webkit-transform: rotateY(270deg);
+          transform: rotateY(270deg);
+  -webkit-transform-style: preserve-3d;
+          transform-style: preserve-3d;
+  -webkit-perspective: 1000px;
+          perspective: 1000px;
+  -webkit-transition: all 0.8s linear;
+  transition: all 0.8s linear;
+}
+
+@media (max-width: 740px) {
+  .todo .listItem_expand {
+    top: 15%;
+    left: 0;
+    width: 450px;
+  }
+}
+
+.todo .listItem_expand::-webkit-scrollbar {
+  display: none;
+}
+
+.todo .listItem_expand .listItem_expand-top {
   border-radius: 12px 0px 0px 0px;
-  margin-top: 16px;
   padding: 4px;
   width: 90%;
-  height: 42px;
+  height: 52px;
+  color: #fff;
 }
 
-.todo .tastList .listItem_expand .listItem_expand-top .listItem_finish,
-.todo .tastList .listItem_expand .listItem_expand-top .listItem_important {
-  float: 1;
-}
-
-.todo .tastList .listItem_expand .listItem_expand-top .listItem_finish ion-icon,
-.todo .tastList .listItem_expand .listItem_expand-top .listItem_important ion-icon {
+.todo .listItem_expand .listItem_expand-top h1 {
   font-size: 24px;
-  color: #fff;
-}
-
-.todo .tastList .listItem_expand .listItem_expand-top .listItem_detail {
-  color: #fff;
-  -webkit-box-flex: 6;
-      -ms-flex: 6;
-          flex: 6;
-}
-
-.todo .tastList .listItem_expand .listItem_expand-top .listItem_detail h1 {
-  font-size: 20px;
   font-weight: 400;
   padding: 8px;
 }
 
-.todo .tastList .listItem_expand .inputForm {
+.todo .listItem_expand .TaskInput {
   width: 90%;
-  height: 42px;
+  padding-left: 15px;
 }
 
-.todo .tastList .listItem_expand .inputForm input {
+.todo .listItem_expand .TaskInput input {
+  border: none;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.3);
+  outline: none;
+  height: 32px;
   width: 95%;
-  background: rgba(255, 255, 255, 0.11);
-  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-right: 1px solid rgba(255, 255, 255, 0.2);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   color: #fff;
-  border-bottom: 1px solid #999;
+  padding-left: 8px;
+  border-bottom: 2px solid #999;
 }
 
-.todo .tastList .listItem_expand .inputForm input::-webkit-input-placeholder {
+.todo .listItem_expand .TaskInput input::-webkit-input-placeholder {
   color: #dbdbdb;
 }
 
-.todo .tastList .listItem_expand .inputForm input:-ms-input-placeholder {
+.todo .listItem_expand .TaskInput input:-ms-input-placeholder {
   color: #dbdbdb;
 }
 
-.todo .tastList .listItem_expand .inputForm input::-ms-input-placeholder {
+.todo .listItem_expand .TaskInput input::-ms-input-placeholder {
   color: #dbdbdb;
 }
 
-.todo .tastList .listItem_expand .inputForm input::placeholder {
+.todo .listItem_expand .TaskInput input::placeholder {
   color: #dbdbdb;
 }
 
-.todo .tastList .listItem_expand .miniList {
+.todo .listItem_expand .miniList {
   width: 95%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -574,7 +623,7 @@
           justify-content: start;
 }
 
-.todo .tastList .listItem_expand .miniList .miniList-item {
+.todo .listItem_expand .miniList .miniList-item {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -595,18 +644,50 @@
   color: #fff;
 }
 
-.todo .tastList .listItem_expand .miniList .miniList-item ion-icon {
+.todo .listItem_expand .miniList .miniList-item ion-icon {
   font-size: 18px;
 }
 
-.todo .tastList .listItem_expand .miniList .miniList-item h1 {
+.todo .listItem_expand .miniList .miniList-item h1 {
   font-size: 16px;
   font-weight: 500;
   padding-bottom: 6px;
   padding-left: 8px;
 }
 
-.todo .tastList .listItem_expand.active {
+.todo .listItem_expand .desciption {
+  margin: 16px;
+  width: 90%;
+  min-height: 150px;
+  background: rgba(0, 0, 0, 0.2);
+  color: #fff;
+  resize: none;
+  outline: none;
+  border-radius: 8px;
+  margin-top: 16px;
+  font-size: 16px;
+  padding-left: 4px;
+}
+
+.todo .listItem_expand .desciption::-webkit-input-placeholder {
+  color: #fff;
+}
+
+.todo .listItem_expand .desciption:-ms-input-placeholder {
+  color: #fff;
+}
+
+.todo .listItem_expand .desciption::-ms-input-placeholder {
+  color: #fff;
+}
+
+.todo .listItem_expand .desciption::placeholder {
+  color: #fff;
+}
+
+.todo .listItem_expand.active {
+  -webkit-transform: rotateY(360deg);
+          transform: rotateY(360deg);
   opacity: 1;
   visibility: visible;
   left: 100%;

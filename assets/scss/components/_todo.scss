@@ -2,6 +2,11 @@
 
 .todo {
    @include grassColor;
+   @include mobile {
+      top: -10%;
+      left: -20%;
+      transform: scale(0.3);
+   }
    position: absolute;
    top: 5%;
    left: -10%;
@@ -9,22 +14,20 @@
    visibility: hidden;
    z-index: 5;
 
-   @include mobile {
-      top: -10%;
-      left: -20%;
-      transform: scale(0.3);
-   }
-
    width: 360px;
    height: 600px;
    border-radius: 8px 0px 0px 8px;
    transition: 0.5s;
 
-   .inputForm {
-      height: 70px;
-      @include flexCenter;
-
-      input {
+   #inputForm {
+      width: 100%;
+      text-align: center;
+      background: linear-gradient( rgba(26, 147, 247, 0.4), rgba(255, 255, 255, 0.3));
+      height: 60px;
+      transition: all 0.5s linear;
+      overflow: hidden;
+      .todoInput {
+         margin-top: 8px;
          border-radius: 8px;
          width: 90%;
          height: 40px;
@@ -33,11 +36,45 @@
          padding-left: 16px;
          font-size: $text-font-size;
       }
+      .todoExpand{
+         @include flexCenter;
+         margin-top: 12px;
+         width: 100%;
+         gap: 8px;
+         .selectInput,
+         .deadlineInput,
+         .counterInput{
+            border-radius: 8px;
+            width: 88px;
+            height: 40px;
+            border: none;
+            outline: none;
+            padding-left: 6px;
+            font-size: $text-font-size;
+         }
+         .deadlineInput{
+            width: 130px;
+            padding: 0px 0 0 8px;
+         }
+      }
+      .optionBtn{
+         padding: 38px 0 18px 0;
+         @include flexCenter;
+         justify-content: space-evenly;
+         .saveTodo,.cancelTodo{
+            width: 40%;
+         }
+      }
+
+   }
+   #inputForm.active{
+      height: 200px;
    }
    .tastList::-webkit-scrollbar {
       display: none;
    }
    .tastList {
+      transition: all 0.5s linear;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -58,6 +95,7 @@
 
          .listItem_finish {
             flex: 1;
+            cursor: pointer;
             ion-icon {
                font-size: $h2-font-size;
                color: #fff;
@@ -84,131 +122,147 @@
                   color: #fff;
                }
                span {
-                  margin-right: 38px;
+                  margin-right: 28px;
+                  color: rgba(0, 255, 34, 0.425);
                }
                .prioritize.flag1 {
-                  background: rgb(247, 39, 39);
+                  background: rgba(255, 0, 0, 0.5);
                }
                .prioritize.flag2 {
-                  background: rgb(245, 149, 5);
+                  background: rgba(245, 149, 5, 0.5);
                }
                .prioritize.flag3 {
-                  background: rgb(231, 243, 56);
+                  background: rgba(179, 204, 66, 0.5);
                }
                .prioritize.flag4 {
-                  background: rgb(179, 178, 178);
+                  background: rgba(118, 119, 117, 0.5)
                }
             }
          }
-         .listItem_important {
+         .listItem_trash {
+            cursor: pointer;
             flex: 1;
             ion-icon {
-               font-size: $h2-font-size;
+               font-size: $h1-font-size;
                color: #fff;
             }
          }
-         .listItem_important.important {
-            ion-icon {
-               color: rgb(218, 241, 2);
-            }
-         }
       }
-      .listItem_expand {
-         position: absolute;
-         top: -1px;
-         left: 100%;
-         width: 360px;
-         height: 600px;
-         opacity: 0;
-         visibility: hidden;
-         transition: 0.8s;
-         opacity: 1;
-         @include grassColor;
-         border-radius: 0px 8px 8px 0px;
+      
+   }
+   .tastList.active{
+      max-height: calc(500px - 140px);
+   }
+   .listItem_expand {
+      @include grassColor;
+      @include flexCenter;
+      @include mobile {
+         top: 15%;
+         left: 0;
+         width: 450px;
+      }
+      &::-webkit-scrollbar{
+         display: none;
+      }
+      flex-direction: column;
+      justify-content: start;
+      position: absolute;
+      overflow: auto;
+      top: -1px;
+      left: 100%;
+      width: 360px;
+      height: 600px;
+      opacity: 0;
+      visibility: hidden;
+      opacity: 1;
+      border-radius: 0px 8px 8px 0px;
+      transform-origin: left;
+      transform: rotateY(270deg);
+      transform-style: preserve-3d;
+      perspective: 1000px;
+      transition: all 0.8s linear;
+
+      .listItem_expand-top {
+         border-radius: 12px 0px 0px 0px;
+         padding: 4px;
+         width: 90%;
+         height: 52px;
+         color: #fff;
+         h1 {
+            font-size: $h2-font-size;
+            font-weight: 400;
+            padding: 8px;
+         }
+         
+      }
+      .TaskInput {
+         width: 90%;
+         padding-left: 15px;
+         
+         input {
+            border: none;
+            border-radius: 4px;
+            background: rgba(0, 0, 0, 0.3);
+            outline: none;
+            height: 32px;
+            width: 95%;
+            color: #fff;
+            padding-left: 8px;
+            border-bottom: 2px solid #999;
+         }
+         input::placeholder{
+            color: rgb(219, 219, 219);
+         }
+         
+      }
+      .miniList {
+         width: 95%;
          display: flex;
          flex-direction: column;
-         align-items: center;
-         @include mobile {
-            top: 15%;
-            left: 0;
-            width: 450px;
-         }
+         justify-content: start;
 
-         .listItem_expand-top {
+         .miniList-item {
             @include flexCenter;
-            justify-content: space-between;
-            border-radius: 12px 0px 0px 0px;
-            margin-top: 16px;
-            padding: 4px;
-            width: 90%;
-            height: 42px;
-
-            .listItem_finish,
-            .listItem_important {
-               float: 1;
-               ion-icon {
-                  font-size: $h2-font-size;
-                  color: #fff;
-               }
-            }
-            .listItem_detail {
-               color: #fff;
-               flex: 6;
-               h1 {
-                  font-size: $h3-font-size;
-                  font-weight: 400;
-                  padding: 8px;
-               }
-            }
-         }
-         .inputForm {
-            width: 90%;
-            height: 42px;
-
-            input {
-               width: 95%;
-               @include grassColor;
-               color: #fff;
-               border-bottom: 1px solid #999;
-               
-            }
-            input::placeholder{
-               color: rgb(219, 219, 219);
-            }
-            
-         }
-         .miniList {
-            width: 95%;
-            display: flex;
-            flex-direction: column;
             justify-content: start;
+            width: 90%;
+            padding: 4px;
+            margin: 4px 4px 4px 16px;
+            box-shadow: 0px 1px #999;
+            color: #fff;
 
-            .miniList-item {
-               @include flexCenter;
-               justify-content: start;
-               width: 90%;
-               padding: 4px;
-               margin: 4px 4px 4px 16px;
-               box-shadow: 0px 1px #999;
-               color: #fff;
-
-               ion-icon {
-                  font-size: $h4-font-size;
-               }
-               h1 {
-                  font-size: 16px;
-                  font-weight: 500;
-                  padding-bottom: 6px;
-                  padding-left: 8px;
-               }
+            ion-icon {
+               font-size: $h4-font-size;
+            }
+            h1 {
+               font-size: 16px;
+               font-weight: 500;
+               padding-bottom: 6px;
+               padding-left: 8px;
             }
          }
       }
-      .listItem_expand.active {
-         opacity: 1;
-         visibility: visible;
-         left: 100%;
+      .desciption{
+         margin:16px;
+         width: 90%;
+         min-height: 150px;
+         background: rgba(0, 0, 0, 0.2);
+         color: #fff;
+         resize: none;
+         outline: none;
+         border-radius: 8px;
+         margin-top: 16px;
+         font-size: $text-font-size;
+         padding-left: 4px;
+         &::placeholder{
+            color: #fff;
+         }
       }
+   }
+   .listItem_expand.active {
+      transform: rotateY(360deg);
+      opacity: 1;
+      visibility: visible;
+      left: 100%;
    }
 }
 .todo.openTodo {

@@ -1,3 +1,6 @@
+const $ = document.querySelector.bind(document);
+const $$ = document.querySelectorAll.bind(document);
+
 const musicBK = $(".musicBlock");
 const player = $(".btn-toggle-play");
 const heading = $(".songTitle h2");
