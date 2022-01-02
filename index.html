@@ -41,16 +41,13 @@
             <div class="title">
                <h1 class="titleH1">pomodoro</h1>
             </div>
-            <audio src="https://assets.mixkit.co/sfx/preview/mixkit-losing-piano-2024.mp3" id="pip"></audio>
+            <audio src="./assets/music/pikachu.mp3" id="pip"></audio>
             <div id="clock-container">
                <div class="clock"></div>
             </div>
 
-            <div id="task">
-               <span>Try your best </span>
-               <span>10</span>
-               <span>/</span>
-               <span>10</span>
+            <div id="pomodoroTask">
+               
             </div>
             <div id="buttons">
                <button class="btn btnStart display">start</button>
@@ -59,7 +56,7 @@
             </div>
          </div>
 
-         <div class="todo openTodo">
+         <div class="todo">
             <div id="inputForm">
 
                <input class="todoInput" type="text" placeholder="Add a task" />
@@ -104,6 +101,7 @@
 
                <div class="listItem_expand-top">
                   <h1 contenteditable="true">day là title</h1>
+                  <button class="toWork" onclick="toWork()">fuck this up</button>
                </div>
 
                <div class="TaskInput">
@@ -258,8 +256,8 @@
          const btnStart = $(".btnStart");
          const btnContinue = $(".btnContinue");
          const btnExit = $(".btnExit");
-         const pip = document.querySelector("#pip");
 
+         
          const config = JSON.parse(localStorage.getItem("POMODORO_SETTING")) || [];
          let studyTime = config.studyTime ?? 25;
          let breakTime = config.breakTime ?? 5;
@@ -270,6 +268,7 @@
          let isAutoStudy = config.autoStartStudy ?? false;
          let isAutoBreak = config.autoStartBreak ?? false;
 
+
          const clock = $(".clock").FlipClock(0, {
             clockFace: "MinuteCounter",
             countdown: true,
@@ -279,7 +278,9 @@
                   if (clock.getTime() == 0) {
                      if (titleH1.html() == "session") {
                         countSession++;
-                        pip.play();
+                        $("#pip").play();
+
+                        workDoneSection(document.querySelector('#pomodoroTask p').getAttribute('id-work') ?? 0);
 
                         if (countSession == LongbreakInterval) {
                            countSession = 0;
@@ -298,12 +299,12 @@
                         titleH1.html("session");
                         btnStart.html("start");
                         pip.play();
-                        isAutoStudy ? clock.satrt() : clock.stop();
+                        isAutoStudy ? clock.start() : clock.stop();
                      } else {
                         clock.setTime(studyTime * 60);
                         titleH1.html("session");
                         pip.play();
-                        isAutoStudy ? clock.satrt() : clock.stop();
+                        isAutoStudy ? clock.start() : clock.stop();
                      }
                   }
                },

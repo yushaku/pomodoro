@@ -261,7 +261,8 @@
 }
 
 .player .playlist .song.active {
-  background: rgba(255, 156, 156, 0.363);
+  background: -webkit-gradient(linear, left top, right top, from(rgba(235, 109, 109, 0.5)), color-stop(rgba(48, 155, 48, 0.5)), color-stop(rgba(18, 88, 218, 0.5)), to(rgba(213, 247, 90, 0.5)));
+  background: linear-gradient(to right, rgba(235, 109, 109, 0.5), rgba(48, 155, 48, 0.5), rgba(18, 88, 218, 0.5), rgba(213, 247, 90, 0.5));
 }
 
 .todo {
@@ -563,17 +564,35 @@
 }
 
 .todo .listItem_expand .listItem_expand-top {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   border-radius: 12px 0px 0px 0px;
   padding: 4px;
-  width: 90%;
-  height: 52px;
+  width: 92%;
+  min-height: 52px;
   color: #fff;
 }
 
 .todo .listItem_expand .listItem_expand-top h1 {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 400;
   padding: 8px;
+}
+
+.todo .listItem_expand .listItem_expand-top button {
+  width: 67px;
+  padding: 4px 2px;
+  border-radius: 2px;
 }
 
 .todo .listItem_expand .TaskInput {
@@ -588,6 +607,7 @@
           align-items: center;
   width: 90%;
   padding-left: 15px;
+  margin-top: 8px;
 }
 
 .todo .listItem_expand .TaskInput input {
@@ -781,7 +801,7 @@
   height: 45%;
 }
 
-.pomodoro #task {
+.pomodoro #pomodoroTask {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -794,6 +814,16 @@
   color: #fff;
   font-size: 24px;
   margin-bottom: 12px;
+}
+
+.pomodoro #pomodoroTask p {
+  padding-right: 8px;
+}
+
+.pomodoro #pomodoroTask span {
+  padding: 0 4px;
+  font-size: 28px;
+  text-shadow: 0 0 8px #ffc508;
 }
 
 .pomodoro #buttons {
