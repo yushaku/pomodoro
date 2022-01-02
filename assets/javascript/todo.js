@@ -56,6 +56,7 @@ function handleEvent() {
       element.onclick = () => {
          listItemExpand.addClass("active");
          renderExpandTodo(element.parentNode.getAttribute("id-todo"));
+         pomodoro.classList.add("pomodoroClose");
       };
    });
    todoInput.focus(() => {
@@ -72,12 +73,12 @@ function handleEvent() {
 }
 
 function finishTodo(index) {
-   todos[index].isFinish ? todos[index].isFinish = false : todos[index].isFinish = true;
+   todos[index].isFinish ? (todos[index].isFinish = false) : (todos[index].isFinish = true);
    addToLocalStorage(myKey, todos);
    render(todos);
-   console.log( $('#finishTodo'))
-   if(todos[index].isFinish){
-      $('#finishTodo').play();
+   console.log($("#finishTodo"));
+   if (todos[index].isFinish) {
+      $("#finishTodo").play();
    }
 }
 function removeTodo(index) {
@@ -104,25 +105,27 @@ function saveTodo() {
 }
 function saveMiniTodo(index) {
    todos[index].subTodo.unshift({
-      miniTitle:  $('.miniTaskInput').value,
-   })
+      miniTitle: $(".miniTaskInput").value,
+   });
    addToLocalStorage(myKey, todos);
-   renderExpandTodo(index);     
+   renderExpandTodo(index);
 }
-function saveExpandTodo(index){
-
-   todos[index].title = $('.listItem_expand-top h1').textContent
-   todos[index].desc = $('.desciption').value
+function saveExpandTodo(index) {
+   todos[index].title = $(".listItem_expand-top h1").textContent;
+   todos[index].desc = $(".desciption").value;
    addToLocalStorage(myKey, todos);
    render(todos);
 }
-function finishMinitodo(index, currentIndex){
-   todos[index].subTodo.splice(currentIndex, 1)
+function finishMinitodo(index, currentIndex) {
+   todos[index].subTodo.splice(currentIndex, 1);
    addToLocalStorage(myKey, todos);
-   renderExpandTodo(index);  
-   $('#finishMiniTodo').play(); 
+   renderExpandTodo(index);
+   $("#finishMiniTodo").play();
 }
-
+function closeExpand() {
+   listItemExpand.removeClass("active");
+   pomodoro.classList.remove("pomodoroClose");
+}
 function clearInput() {
    todoInput.val("");
    selectInput.val("");
@@ -137,7 +140,7 @@ function addToLocalStorage(key, data) {
 }
 function renderExpandTodo(index) {
    const currentTodo = todos[index];
-   console.log(todos[index])
+   console.log(todos[index]);
    const currentTodoExpand = `
             <div class="listItem_expand-top">
                <h1 contenteditable="true">${currentTodo.title}</h1>
@@ -147,21 +150,23 @@ function renderExpandTodo(index) {
                <button class="addMiniTodo" onclick ="saveMiniTodo(${index})">Add</button>
             </div>
             <div class="miniList">
-               ${currentTodo.subTodo.map((miniTodo, currentIndex) => {
-                  return `
+               ${currentTodo.subTodo
+                  .map((miniTodo, currentIndex) => {
+                     return `
                   <div class="miniList-item">
                      <ion-icon name="ellipse-outline" onclick="finishMinitodo( ${index}, ${currentIndex})"></ion-icon>
                      <audio id="finishMiniTodo" src="./assets/music/finish2.mp3"></audio>
                      <h1 contenteditable="true"> ${miniTodo.miniTitle}</h1>
                   </div>
                   `;
-               }).join('')}
+                  })
+                  .join("")}
             </div>
             <textarea name="desciption" class="desciption" placeholder="Desciption here...">
                ${currentTodo.desc}
             </textarea>
             <div class="btnBLock">
-                  <button class="btnCancel" onclick="function closeExpand(){ listItemExpand.removeClass('active')};closeExpand()">Cancel</button>
+                  <button class="btnCancel" onclick="closeExpand()">Cancel</button>
                   <button class="btnSave" onclick = "saveExpandTodo(${index})">Save</button>
             </div>`;
    listItemExpand.html(currentTodoExpand);
