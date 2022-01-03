@@ -280,7 +280,6 @@
                      if (titleH1.html() == "session") {
                         countSession++;
                         $("#pip").play();
-
                         workDoneSection(document.querySelector('#pomodoroTask p').getAttribute('id-work') ?? 0);
 
                         if (countSession == LongbreakInterval) {
@@ -312,11 +311,18 @@
             },
          });
          clock.setTime(studyTime * 60);
+         
          btnStart.on("click", function () {
             if (btnStart.html() == "start") {
-               btnStart.html("pause");
-               titleH1.html("session");
-               clock.start();
+               if(titleH1.html() == "pomodoro"){
+                  btnStart.html("pause");
+                  titleH1.html("session");
+                  clock.start();
+               }
+               else{
+                  btnStart.html("pause");
+                  clock.start();
+               }
             } else if (btnStart.html() == "pause") {
                clock.stop();
                btnStart.removeClass("display");
