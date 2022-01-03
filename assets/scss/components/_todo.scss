@@ -120,23 +120,36 @@
                   padding: 2px 9px;
                   border-radius: 16px;
                   color: #fff;
+                  &.flag1{
+                     background: rgba(255, 0, 0, 0.5);
+                  }
+                  &.flag2{
+                     background: rgba(245, 149, 5, 0.5);
+                  }
+                  &.flag3{
+                     background: rgba(179, 204, 66, 0.5);
+                  }
+                  &.flag4{
+                     background: rgba(118, 119, 117, 0.5)
+                  }
                }
-               span {
-                  margin-right: 28px;
-                  color: rgba(0, 255, 34, 0.425);
+               .todoDeadline {
+                  padding-left: 28px;
+                  &.overdate{
+                     color: rgba(250, 48, 48, 0.7);
+                     text-shadow: 0 0 8px rgba(250, 48, 48, 0.7);
+                     
+                  }
+                  &.today{
+                     color: rgba(245, 210, 11, 0.7);
+                     text-shadow: 0 0 8px rgba(229, 245, 11, 0.7);
+                  }
+                  &.inFuture{
+                     color: rgba(0, 255, 34, 0.7);
+                     text-shadow: 0 0 8px rgba(0, 255, 34, 0.7);
+                  }
                }
-               .prioritize.flag1 {
-                  background: rgba(255, 0, 0, 0.5);
-               }
-               .prioritize.flag2 {
-                  background: rgba(245, 149, 5, 0.5);
-               }
-               .prioritize.flag3 {
-                  background: rgba(179, 204, 66, 0.5);
-               }
-               .prioritize.flag4 {
-                  background: rgba(118, 119, 117, 0.5)
-               }
+
             }
          }
          .listItem_trash {
@@ -264,6 +277,15 @@
          &::placeholder{
             color: #fff;
          }
+      }
+      .dateLineFix{
+         margin-top: 16px;
+         padding-left: 16px;
+         width: 85%;
+         height: 40px;
+         background: rgba(0, 0, 0, 0.356);
+         color: #fff;
+         border-radius: 8px;
       }
       .btnBLock{
          margin-top: 16px;

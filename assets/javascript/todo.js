@@ -33,7 +33,9 @@ function render(todos) {
                </${todo.isFinish ? "s" : "h1"}>
                <div class="listItem_detail-mini">
                   <span class="prioritize ${todo.prioritize}">${todo.prioritize}</span>
-                  <span>${"deadline: " + moment(todo.date).toNow(true) + " left"}</span>
+                  <span class= " todoDeadline ${parseInt(moment(todo.date).diff(moment().format('l')))== 0 ? 'today' : parseInt(moment(todo.date).fromNow()) > 0 ? 'inFuture' : 'overdate'}" >
+                     ${"deadline: " + moment(todo.date).toNow() + " left"}
+                  </span>
                </div>
             </div>
             <div class="listItem_trash" onclick="removeTodo(${index})">
@@ -43,6 +45,7 @@ function render(todos) {
          `;
    });
    tastList.html(todoListMap);
+   //  
 }
 function renderExpandTodo(index) {
    const currentTodo = todos[index];
@@ -72,6 +75,7 @@ function renderExpandTodo(index) {
             <textarea name="desciption" class="desciption" placeholder="Desciption here...">
                ${currentTodo.desc}
             </textarea>
+            <input type="date" name="" class="dateLineFix" value = ${currentTodo.date}>
             <div class="btnBLock">
                   <button class="btnCancel" onclick="closeExpand()">Cancel</button>
                   <button class="btnSave" onclick = "saveExpandTodo(${index})">Save</button>
@@ -111,6 +115,32 @@ function finishTodo(index) {
       $("#finishTodo").play();
    }
 }
+
+function saveMiniTodo(index) {
+   todos[index].subTodo.unshift({
+      miniTitle: $(".miniTaskInput").value,
+   });
+   addToLocalStorage(myKey, todos);
+   renderExpandTodo(index);
+}
+function saveExpandTodo(index) {
+   todos[index].title = $(".listItem_expand-top h1").textContent;
+   todos[index].desc = $(".desciption").value;
+   todos[index].date = $(".dateLineFix").value;
+   addToLocalStorage(myKey, todos);
+   render(todos);
+}
+function finishMinitodo(index, currentIndex) {
+   todos[index].subTodo.splice(currentIndex, 1);
+   addToLocalStorage(myKey, todos);
+   renderExpandTodo(index);
+   $("#finishMiniTodo").play();
+}
+function openExpand(index){
+      listItemExpand.addClass("active");
+      pomodoro.classList.add("pomodoroClose");
+      renderExpandTodo(index);
+}
 function removeTodo(index) {
    if (confirm("Are you sure?")) {
       todos.splice(index, 1);
@@ -133,30 +163,6 @@ function saveTodo() {
    clearInput();
    render(todos);
 }
-function saveMiniTodo(index) {
-   todos[index].subTodo.unshift({
-      miniTitle: $(".miniTaskInput").value,
-   });
-   addToLocalStorage(myKey, todos);
-   renderExpandTodo(index);
-}
-function saveExpandTodo(index) {
-   todos[index].title = $(".listItem_expand-top h1").textContent;
-   todos[index].desc = $(".desciption").value;
-   addToLocalStorage(myKey, todos);
-   render(todos);
-}
-function finishMinitodo(index, currentIndex) {
-   todos[index].subTodo.splice(currentIndex, 1);
-   addToLocalStorage(myKey, todos);
-   renderExpandTodo(index);
-   $("#finishMiniTodo").play();
-}
-function openExpand(index){
-      listItemExpand.addClass("active");
-      pomodoro.classList.add("pomodoroClose");
-      renderExpandTodo(index);
-}
 function closeExpand() {
    listItemExpand.removeClass("active");
    pomodoro.classList.remove("pomodoroClose");
@@ -174,30 +180,31 @@ function addToLocalStorage(key, data) {
    localStorage.setItem(key, JSON.stringify(data));
 }
 
-function addTodo() {
-   let index = todos.length + 1;
-   const nodeTodo = `
-      <div class="listItem" id-todo = ${index}>
-      <div class= "listItem_finish"}>
-         <ion-icon name= "ellipse-outline"}></ion-icon>
-      </div>
-      <div class="listItem_detail" >
-         <h1>${todoInput.val()}</h1>
-         <div class="listItem_detail-mini">
-            <span class="prioritize ${selectInput.val()}">${selectInput.val()}</span>
-            <span>${"deadline: " + moment(deadlineInput.val()).toNow(true) + " left"}</span>
-         </div>
-      </div>
-      <div class="listItem_trash" 
-         onclick="function delete(){ 
-            removeTodo(todos, element.parentNode.getAttribute("id-todo"))
-         }delete()">
-         <ion-icon name="trash-outline"></ion-icon>
-      </div>
-   </div>`;
-   tastList.append(nodeTodo);
-   console.log(todos);
-}
+// function addTodo() {
+//    let index = todos.length + 1;
+//    const nodeTodo = `
+//       <div class="listItem" id-todo = ${index}>
+//       <div class= "listItem_finish"}>
+//          <ion-icon name= "ellipse-outline"}></ion-icon>
+//       </div>
+//       <div class="listItem_detail" >
+//          <h1>${todoInput.val()}</h1>
+//          <div class="listItem_detail-mini">
+//             <span class="prioritize ${selectInput.val()}">${selectInput.val()}</span>
+//             <span>${"deadline: " + moment(deadlineInput.val()).toNow(true) + " left"}</span>
+//          </div>
+//       </div>
+//       <div class="listItem_trash" 
+//          onclick="function delete(){ 
+//             removeTodo(todos, element.parentNode.getAttribute("id-todo"))
+//          }delete()">
+//          <ion-icon name="trash-outline"></ion-icon>
+//       </div>
+//    </div>`;
+//    tastList.append(nodeTodo);
+// }
+
+/* function for pomodoro and todolist combine*/
 function workDoneSection(index){
    let newTimeBlockFinish = parseInt(todos[index].timeBlockFinsh) + 1;
    todos[index].timeBlockFinsh = newTimeBlockFinish;
@@ -211,7 +218,6 @@ function workDoneSection(index){
    })
    addToLocalStorage(reportKey, reportStore);
 }
-
 function toWork(index){
    listItemExpand.removeClass("active");
    pomodoro.classList.remove("pomodoroClose");

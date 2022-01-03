@@ -469,11 +469,6 @@
   color: #fff;
 }
 
-.todo .tastList .listItem .listItem_detail .listItem_detail-mini span {
-  margin-right: 28px;
-  color: rgba(0, 255, 34, 0.425);
-}
-
 .todo .tastList .listItem .listItem_detail .listItem_detail-mini .prioritize.flag1 {
   background: rgba(255, 0, 0, 0.5);
 }
@@ -488,6 +483,25 @@
 
 .todo .tastList .listItem .listItem_detail .listItem_detail-mini .prioritize.flag4 {
   background: rgba(118, 119, 117, 0.5);
+}
+
+.todo .tastList .listItem .listItem_detail .listItem_detail-mini .todoDeadline {
+  padding-left: 28px;
+}
+
+.todo .tastList .listItem .listItem_detail .listItem_detail-mini .todoDeadline.overdate {
+  color: rgba(250, 48, 48, 0.7);
+  text-shadow: 0 0 8px rgba(250, 48, 48, 0.7);
+}
+
+.todo .tastList .listItem .listItem_detail .listItem_detail-mini .todoDeadline.today {
+  color: rgba(245, 210, 11, 0.7);
+  text-shadow: 0 0 8px rgba(229, 245, 11, 0.7);
+}
+
+.todo .tastList .listItem .listItem_detail .listItem_detail-mini .todoDeadline.inFuture {
+  color: rgba(0, 255, 34, 0.7);
+  text-shadow: 0 0 8px rgba(0, 255, 34, 0.7);
 }
 
 .todo .tastList .listItem .listItem_trash {
@@ -706,6 +720,16 @@
 
 .todo .listItem_expand .desciption::placeholder {
   color: #fff;
+}
+
+.todo .listItem_expand .dateLineFix {
+  margin-top: 16px;
+  padding-left: 16px;
+  width: 85%;
+  height: 40px;
+  background: rgba(0, 0, 0, 0.356);
+  color: #fff;
+  border-radius: 8px;
 }
 
 .todo .listItem_expand .btnBLock {
@@ -1044,6 +1068,7 @@ header .wapper .logo a {
   color: #fff;
   font-weight: 700;
   font-family: "Fuzzy Bubbles", cursive;
+  text-shadow: 0 0 8px blue;
 }
 
 header .wapper .navbar {
