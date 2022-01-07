@@ -351,10 +351,10 @@ footer {
    @include grassColor;
    @include flexCenter;
    position: absolute;
-   transition: all 1.5s linear;
+   transition: all .5s linear;
 
-   bottom: 4%;
-   min-width: 280px;
+   bottom: 2%;
+   min-width: 300px;
    height: 50px;
    border-radius: 24px;
    z-index: 10;
@@ -365,8 +365,12 @@ footer {
    ul {
       @include flexCenter;
       gap: 40%;
-      li {
+
+      .feature {
          margin-top: 8px;
+         position: relative;
+         @include flexCenter;
+
          ion-icon {
             font-size: $h1-font-size;
             color: #fff;
@@ -374,20 +378,48 @@ footer {
             transition: 0.3s;
             padding-bottom: 0;
          }
-      }
-      .feature.openFeature {
-         background: #00a5f827;
-         padding: 2px 8px;
-         transform: scale(1.2);
-         border-radius: 12px;
+         &::after{
+            content: attr(id-feature);
+            @include grassColor;
+            background: rgba(0, 38, 255, 0.2);
+            position: absolute;
+            top: -80%;
+            color: #fff;
+            width: fit-content;
+            padding: 4px;
+            transition: all 0.5s linear;
+            border-radius: 8px;
+            opacity: 0;
+            border-bottom: none;
+         }
+
+         &::before{
+            content: "";
+            position: absolute;
+            background: rgba(0, 38, 255, 0.2);
+            height: 20px;
+            width: 35px;
+            border-radius: 0 0 100px 100px;
+            z-index: 111;
+            top: -8%;
+            transition: all 0.5s linear;
+            opacity: 0;
+         }
+         &:hover::before,
+         &:hover::after{
+            opacity: 1;
+            transform: translateY(-100%);
+         }
+
       }
    }
-}
-footer:hover {
-   background: linear-gradient(
-      to right rgba(3, 4, 94, 0.15),
-      rgba(2, 62, 138, 0.15),
-      rgba(0, 119, 182, 0.15),
-      rgba(0, 150, 199, 0.15)
+   &:hover{
+      background: linear-gradient(
+      rgba(196, 26, 26, 0.3),
+      rgba(202, 199, 31, 0.3),
+      rgba(32, 216, 16, 0.3),
+      rgba(0, 30, 199, 0.3)
    );
+   }
 }
+

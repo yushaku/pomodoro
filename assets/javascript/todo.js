@@ -33,7 +33,7 @@ function render(todos) {
                </${todo.isFinish ? "s" : "h1"}>
                <div class="listItem_detail-mini">
                   <span class="prioritize ${todo.prioritize}">${todo.prioritize}</span>
-                  <span class= " todoDeadline ${parseInt(moment(todo.date).diff(moment().format('l')))== 0 ? 'today' : parseInt(moment(todo.date).fromNow()) > 0 ? 'inFuture' : 'overdate'}" >
+                  <span class= " todoDeadline ${parseInt(moment(todo.date).diff(moment().format('l')))== 0 ? 'today' : parseInt(moment(todo.date).diff(moment().format('l'))) > 0 ? 'inFuture' : 'overdate'}" >
                      ${"deadline: " + moment(todo.date).toNow() + " left"}
                   </span>
                </div>
