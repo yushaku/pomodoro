@@ -1606,52 +1606,9 @@ footer ul .feature ion-icon {
   padding-bottom: 0;
 }
 
-footer ul .feature::after {
-  content: attr(id-feature);
-  background: rgba(255, 255, 255, 0.11);
-  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-right: 1px solid rgba(255, 255, 255, 0.2);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  background: rgba(0, 38, 255, 0.2);
-  position: absolute;
-  top: -80%;
-  color: #fff;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  padding: 4px;
-  -webkit-transition: all 0.5s linear;
-  transition: all 0.5s linear;
-  border-radius: 8px;
-  opacity: 0;
-  border-bottom: none;
-}
-
-footer ul .feature::before {
-  content: "";
-  position: absolute;
-  background: rgba(0, 38, 255, 0.2);
-  height: 20px;
-  width: 35px;
-  border-radius: 0 0 100px 100px;
-  z-index: 111;
-  top: -8%;
-  -webkit-transition: all 0.5s linear;
-  transition: all 0.5s linear;
-  opacity: 0;
-}
-
-footer ul .feature:hover::before, footer ul .feature:hover::after {
-  opacity: 1;
-  -webkit-transform: translateY(-100%);
-          transform: translateY(-100%);
-}
-
 footer:hover {
-  background: -webkit-gradient(linear, left top, left bottom, from(rgba(196, 26, 26, 0.3)), color-stop(rgba(202, 199, 31, 0.3)), color-stop(rgba(32, 216, 16, 0.3)), to(rgba(0, 30, 199, 0.3)));
-  background: linear-gradient(rgba(196, 26, 26, 0.3), rgba(202, 199, 31, 0.3), rgba(32, 216, 16, 0.3), rgba(0, 30, 199, 0.3));
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(9, 155, 252, 0.3)), to(rgba(5, 51, 253, 0.3)));
+  background: linear-gradient(rgba(9, 155, 252, 0.3), rgba(5, 51, 253, 0.3));
 }
 
 * {

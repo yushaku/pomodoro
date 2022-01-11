@@ -130,7 +130,7 @@ const bgConfig = {
 
       featureTodo.onclick = function () {
          todo.classList.toggle("openTodo");
-         if (window.outerWidth <= 414) {
+         if (window.outerWidth <= 775) {
             pomodoro.classList.toggle("pomodoroClose");
          }
       };
@@ -142,7 +142,7 @@ const bgConfig = {
 
       featureSong.onclick = function () {
          musicBlock.classList.toggle("musicOpen");
-         if (window.outerWidth <= 414) {
+         if (window.outerWidth <= 775) {
             pomodoro.classList.toggle("pomodoroClose");
          }
       };
