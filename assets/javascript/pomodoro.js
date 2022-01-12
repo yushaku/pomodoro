@@ -3,8 +3,6 @@ const btnStart = $(".btnStart");
 const btnContinue = $(".btnContinue");
 const btnExit = $(".btnExit");
 
-
-
 const config = JSON.parse(localStorage.getItem("POMODORO_SETTING")) || [];
 let studyTime = config.studyTime ?? 25;
 let breakTime = config.breakTime ?? 5;
@@ -13,7 +11,6 @@ let countSession = 0;
 let LongbreakInterval = config.LongbreakInterval ?? 4;
 let isAutoStudy = config.autoStartStudy ?? false;
 let isAutoBreak = config.autoStartBreak ?? false;
-
 
 const clock = $(".clock").FlipClock(0, {
    clockFace: "MinuteCounter",
@@ -24,13 +21,16 @@ const clock = $(".clock").FlipClock(0, {
          if (clock.getTime() == 0) {
             if (titleH1.html() == "session") {
                countSession++;
-               $("#pip").play();
-               workDoneSection(document.querySelector('#pomodoroTask p').getAttribute('id-work') ?? 0);
+
+               let myPip = new Audio;
+               myPip.src = './assets/music/pikachu.mp3'
+               myPip.play()
+               workDoneSection(document.querySelector("#pomodoroTask p").getAttribute("id-work") ?? 0);
 
                if (countSession == LongbreakInterval) {
                   countSession = 0;
                   titleH1.html("long break");
-                  clock.setTime(longBreakTime * 60 +1);
+                  clock.setTime(longBreakTime * 60 + 1);
                   btnStart.html("start");
                   isAutoBreak ? clock.start() : clock.stop();
                } else {
@@ -40,13 +40,13 @@ const clock = $(".clock").FlipClock(0, {
                   btnStart.html("start");
                }
             } else if (titleH1.html() == "break") {
-               clock.setTime(studyTime * 60 +1);
+               clock.setTime(studyTime * 60 + 1);
                titleH1.html("session");
                btnStart.html("start");
                pip.play();
                isAutoStudy ? clock.start() : clock.stop();
             } else {
-               clock.setTime(studyTime * 60+1);
+               clock.setTime(studyTime * 60 + 1);
                titleH1.html("session");
                pip.play();
                isAutoStudy ? clock.start() : clock.stop();
@@ -57,15 +57,13 @@ const clock = $(".clock").FlipClock(0, {
 });
 clock.setTime(studyTime * 60);
 
-
 btnStart.on("click", function () {
    if (btnStart.html() == "start") {
-      if(titleH1.html() == "pomodoro"){
+      if (titleH1.html() == "pomodoro") {
          btnStart.html("pause");
          titleH1.html("session");
          clock.start();
-      }
-      else{
+      } else {
          btnStart.html("pause");
          clock.start();
       }

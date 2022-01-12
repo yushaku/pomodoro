@@ -1,4 +1,4 @@
-import {myBackgrounds} from './data.js'
+import { myBackgrounds } from "./data.js";
 
 const bgSetting = $(".backgroundSetting");
 const pomodoro = $(".pomodoro");
@@ -14,12 +14,12 @@ const backgrounds = myBackgrounds;
 const POMODORO_SETTING = "POMODORO_SETTING";
 let pomodoroConfig = {};
 
-(function runSetting(){
+(function runSetting() {
    renderTheme();
    renderVideoList();
    handleEvent();
    setDefault(POMODORO_SETTING);
-})()
+})();
 
 function renderTheme() {
    let themeitem = backgrounds.map((bg) => {
@@ -32,7 +32,7 @@ function renderTheme() {
          `;
       }
    });
-   $(".themeList").html(themeitem)
+   $(".themeList").html(themeitem);
 }
 function renderVideoList() {
    let themeitem = backgrounds.map((bg) => {
@@ -49,74 +49,107 @@ function renderVideoList() {
          `;
       }
    });
-   $(".videoList").html(themeitem)
+   $(".videoList").html(themeitem);
 }
-function handleEvent(){
-
+function handleEvent() {
    const feature = $(".feature");
 
-   feature.each((index, element ) => {
-      element.onclick = ()=>{
-         element.classList.toggle("openFeature");
-      }
+   // feature.each((index, element) => {
+   //    element.onclick = () => {
+   //       element.classList.toggle("openFeature");
+   //    };
+   // });
+
+   $(".featureTodo").click(() => {
+      openTodo();
    });
 
-   $(".featureTodo").click(()=>{
-      $(".todo").toggleClass("openTodo");
-      if (window.outerWidth <= 775) {
-         pomodoro.toggleClass("pomodoroClose");
-      }
-   })
+   $(".featureBG").click(() => {
+      openBackGround();
+   });
 
-   $(".featureBG").click(()=>{
-      bgSetting.toggleClass("bgSettingOpen");
-      pomodoro.toggleClass("pomodoroClose");
-   })
+   $(".featureSong").click(() => {
+      openMusic();
+   });
 
-   $(".featureSong").click(()=>{
-      $(".musicBlock").toggleClass("musicOpen");
-      if (window.outerWidth <= 775) {
-         pomodoro.toggleClass("pomodoroClose");
-      }
-   })
-
-   $(".themeItem").each((index,item) => {
-      item.onclick = ()=>{         
-         $('#banner').html(item.innerHTML)
+   $(".themeItem").each((index, item) => {
+      item.onclick = () => {
+         console.log(item.innerHTML);
+         $("#banner").html(item.innerHTML);
          bgSetting.removeClass("bgSettingOpen");
          feature[1].classList.remove("openFeature");
          pomodoro.removeClass("pomodoroClose");
-      }
+      };
    });
 
-   $(".settingBtn").click(()=>{
-      settingBlock.toggleClass("settingOpen");
-      $(".musicBlock").removeClass("musicOpen")
-   })
+   $(".settingBtn").click(() => {
+      openSetting()
+   });
 
-
-   $(".apply").click((e)=>{
+   $(".apply").click((e) => {
       e.preventDefault();
 
-      pomodoroConfig.studyTime = studyTimeInput.val()
-      pomodoroConfig.breakTime = breakTimeInput.val()
-      pomodoroConfig.longBreakTime = longBreakTimeInput.val()
-      pomodoroConfig.autoStartBreak = autoStartBreak.is(':checked')
-      pomodoroConfig.autoStartStudy = autoStartStudy.is(':checked')
-      pomodoroConfig.LongbreakInterval = breakInervalInput.val()
+      pomodoroConfig.studyTime = studyTimeInput.val();
+      pomodoroConfig.breakTime = breakTimeInput.val();
+      pomodoroConfig.longBreakTime = longBreakTimeInput.val();
+      pomodoroConfig.autoStartBreak = autoStartBreak.is(":checked");
+      pomodoroConfig.autoStartStudy = autoStartStudy.is(":checked");
+      pomodoroConfig.LongbreakInterval = breakInervalInput.val();
 
       alert("ok");
       settingBlock.removeClass("settingOpen");
       addToLocalStorage(POMODORO_SETTING, pomodoroConfig);
       setDefault();
-   })
+   });
 
+   document.addEventListener(
+      "keydown",
+      (event) => {
+         var name = event.key;
+         var code = event.code;
+         //alert(`Key pressed ${name} \r\n Key code value: ${code}`);
+         if (name === "t") {
+            openTodo();
+         }
+         else if(name == 'm'){
+            openMusic()
+         }
+         else if(name == 'b'){
+            openBackGround()
+         }
+         else if(name =='s'){
+            openSetting()
+         }
+      },
+      false
+   );
 }
 function setDefault(key) {
    studyTimeInput.val(getDataFromLocalStorage(key).studyTime ?? studyTime);
    breakTimeInput.val(getDataFromLocalStorage(key).breakTime ?? breakTime);
    longBreakTimeInput.val(getDataFromLocalStorage(key).longBreakTime ?? longBreakTime);
    breakInervalInput.val(getDataFromLocalStorage(key).LongbreakInterval ?? LongbreakInterval);
-   autoStartBreak.prop('checked', getDataFromLocalStorage(key).autoStartBreak?? isAutoBreak);
-   autoStartStudy.prop('checked', getDataFromLocalStorage(key).autoStartStudy?? isAutoStudy);
+   autoStartBreak.prop("checked", getDataFromLocalStorage(key).autoStartBreak ?? isAutoBreak);
+   autoStartStudy.prop("checked", getDataFromLocalStorage(key).autoStartStudy ?? isAutoStudy);
+}
+function openTodo() {
+   $(".todo").toggleClass("openTodo");
+   if (window.outerWidth <= 775) {
+      pomodoro.toggleClass("pomodoroClose");
+   }
+}
+function openBackGround() {
+   bgSetting.toggleClass("bgSettingOpen");
+   pomodoro.toggleClass("pomodoroClose");
+}
+function openMusic() {
+   $(".musicBlock").toggleClass("musicOpen");
+   settingBlock.removeClass("settingOpen");
+   if (window.outerWidth <= 775) {
+      pomodoro.toggleClass("pomodoroClose");
+   }
+}
+function openSetting(){
+   settingBlock.toggleClass("settingOpen");
+      $(".musicBlock").removeClass("musicOpen");
 }

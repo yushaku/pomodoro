@@ -1,4 +1,4 @@
-import { mySongs } from './data.js'
+import { mySongs } from "./data.js";
 const $ = document.querySelector.bind(document);
 
 const musicBK = $(".musicBlock");
@@ -13,20 +13,16 @@ const radomButton = $(".btn-random");
 const repeatButton = $(".btn-repeat");
 const playList = $(".playlist");
 
-
 const PLAYER_STORAGE_KEY = "YUSHAKU_PLAYER";
 
-const app = {
+const musicPlayer = {
    currentIndex: 0,
    isPlaying: false,
    isRandom: false,
    isRepeat: false,
-   config: JSON.parse(localStorage.getItem(PLAYER_STORAGE_KEY)) || {},
-   setConfig: function (key, value) {
-      this.config[key] = value;
-      localStorage.setItem(PLAYER_STORAGE_KEY, JSON.stringify(this.config));
-   },
+   musicConfig: {},
    songs: mySongs,
+
    defindProperties: function () {
       Object.defineProperty(this, "currentSong", {
          get: function () {
@@ -103,26 +99,24 @@ const app = {
       const nextBtn = $(".btn-next");
       const prevBtn = $(".btn-prev");
       nextBtn.onclick = function () {
-         _this.isRandom ? _this.playRamdom() : _this.nextSong();
-         audio.play();
-         _this.render();
-         _this.scrollToActiveSong();
+         this.playNextSong()
       };
       prevBtn.onclick = function () {
-         _this.isRandom ? _this.playRamdom() : _this.prevSong();
-         audio.play();
-         _this.render();
-         _this.scrollToActiveSong();
+         this.playPrevSong()
       };
       ///============================= random/repeat button ===========================================
       radomButton.onclick = function () {
          _this.isRandom = !_this.isRandom;
-         _this.setConfig("isRamdom", _this.isRandom);
+         _this.musicConfig.isRandom = _this.isRandom;
+         _this.musicConfig.isRepeat = _this.isRepeat;
+         addToLocalStorage(PLAYER_STORAGE_KEY, _this.musicConfig);
          radomButton.classList.toggle("active", _this.isRandom);
       };
       repeatButton.onclick = function () {
+         _this.musicConfig.isRandom = _this.isRandom;
          _this.isRepeat = !_this.isRepeat;
-         _this.setConfig("isRepeat", _this.isRepeat);
+         _this.musicConfig.isRepeat = _this.isRepeat;
+         addToLocalStorage(PLAYER_STORAGE_KEY, _this.musicConfig);
          repeatButton.classList.toggle("active", _this.isRepeat);
       };
 
@@ -144,11 +138,27 @@ const app = {
                _this.render();
                audio.play();
             }
-            //click to option button
-            if (songOption) {
-            }
          }
       };
+
+      document.addEventListener(
+         "keydown",
+         (event) => {
+            var name = event.code;
+            if (name === "Space") {
+               _this.isPlaying ? audio.pause() : audio.play();
+            } else if (name == "ArrowUp") {
+               audio.volume = 1 ? (audio.volume = 1) : (audio.volume += 0.1);
+            } else if (name == "ArrowDown") {
+               audio.volume = 0 ? (audio.volume = 0) : (audio.volume -= 0.1);
+            } else if (name == "ArrowLeft") {
+               this.playPrevSong()
+            } else if (name == "ArrowRight") {
+               this.playNextSong();
+            }
+         },
+         false
+      );
    },
    loadCurrentSong: function () {
       heading.textContent = this.currentSong.name;
@@ -162,12 +172,24 @@ const app = {
       }
       this.loadCurrentSong();
    },
+   playNextSong: function () {
+      this.isRandom ? this.playRamdom() : this.nextSong();
+      audio.play();
+      this.render();
+      this.scrollToActiveSong();
+   },
    prevSong: function () {
       this.currentIndex--;
       if (this.currentIndex < 0) {
          this.currentIndex = this.songs.length;
       }
       this.loadCurrentSong();
+   },
+   playPrevSong: function(){
+      this.isRandom ? this.playRamdom() : this.prevSong();
+      audio.play();
+      this.render();
+      this.scrollToActiveSong();
    },
 
    playRamdom: function () {
@@ -179,12 +201,13 @@ const app = {
       this.currentIndex = newIndex;
       this.loadCurrentSong();
    },
-   loadConfig: function () {
-      this.isRandom = this.config.isRandom;
-      this.isRepeat = this.config.isRepeat;
 
-      //second method
-      //Object.assign(this, this.config)
+   loadConfig: function () {
+      this.isRandom = getDataFromLocalStorage(PLAYER_STORAGE_KEY).isRandom ?? false;
+      this.isRepeat = getDataFromLocalStorage(PLAYER_STORAGE_KEY).isRepeat ?? false;
+
+      repeatButton.classList.toggle("active", this.isRepeat);
+      radomButton.classList.toggle("active", this.isRandom);
    },
    scrollToActiveSong: function () {
       setTimeout(() => {
@@ -208,10 +231,7 @@ const app = {
 
       // render ra giao diện
       this.render();
-
-      radomButton.classList.toggle("active", this.isRepeat);
-      radomButton.classList.toggle("active", this.isRandom);
    },
 };
 
-app.start();
+musicPlayer.start();

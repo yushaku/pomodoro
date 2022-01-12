@@ -1,13 +1,14 @@
 const listItemExpand = $(".listItem_expand");
 const todoInput = $(".todoInput");
 const selectInput = $(".selectInput");
+const pomodoro = $(".pomodoro");
 const deadlineInput = $(".deadlineInput");
 const counterInput = $(".counterInput");
 const tastList = $(".tastList");
 const inputForm = $("#inputForm");
-const pomodoroTask = $('#pomodoroTask')
+const pomodoroTask = $("#pomodoroTask");
 const myKey = "TODOs";
-const reportKey = "report"
+const reportKey = "report";
 
 const todos = getDataFromLocalStorage(myKey);
 const reportStore = getDataFromLocalStorage(reportKey);
@@ -25,7 +26,6 @@ function render(todos) {
          <div class="listItem" id-todo = ${index}>
             <div class= "listItem_finish" onclick="finishTodo(${index})">
                <ion-icon name= ${todo.isFinish ? "ribbon-outline" : "ellipse-outline"}></ion-icon>
-               <audio id="finishTodo" src="./assets/music/finish.mp3"></audio>
             </div>
             <div class="listItem_detail" onclick ="openExpand(${index})" >
                <${todo.isFinish ? "s" : "h1"}>
@@ -33,7 +33,13 @@ function render(todos) {
                </${todo.isFinish ? "s" : "h1"}>
                <div class="listItem_detail-mini">
                   <span class="prioritize ${todo.prioritize}">${todo.prioritize}</span>
-                  <span class= " todoDeadline ${parseInt(moment(todo.date).diff(moment().format('l')))== 0 ? 'today' : parseInt(moment(todo.date).diff(moment().format('l'))) > 0 ? 'inFuture' : 'overdate'}" >
+                  <span class= " todoDeadline ${
+                     parseInt(moment(todo.date).diff(moment().format("l"))) == 0
+                        ? "today"
+                        : parseInt(moment(todo.date).diff(moment().format("l"))) > 0
+                        ? "inFuture"
+                        : "overdate"
+                  }" >
                      ${"deadline: " + moment(todo.date).toNow() + " left"}
                   </span>
                </div>
@@ -45,7 +51,7 @@ function render(todos) {
          `;
    });
    tastList.html(todoListMap);
-   //  
+   //
 }
 function renderExpandTodo(index) {
    const currentTodo = todos[index];
@@ -65,7 +71,6 @@ function renderExpandTodo(index) {
                      return `
                   <div class="miniList-item">
                      <ion-icon name="ellipse-outline" onclick="finishMinitodo( ${index}, ${currentIndex})"></ion-icon>
-                     <audio id="finishMiniTodo" src="./assets/music/finish2.mp3"></audio>
                      <h1 contenteditable="true"> ${miniTodo.miniTitle}</h1>
                   </div>
                   `;
@@ -98,27 +103,20 @@ function handleEvent() {
       inputForm.addClass("active");
       tastList.addClass("active");
    });
-
-   $(".miniTaskInput").keypress(function (event) {
-      var keycode = event.keyCode ? event.keyCode : event.which;
-      if (keycode == "13") {
-         console.log("object");
-      }
-   });
 }
 function finishTodo(index) {
    todos[index].isFinish ? (todos[index].isFinish = false) : (todos[index].isFinish = true);
    addToLocalStorage(myKey, todos);
    render(todos);
-   console.log($("#finishTodo"));
    if (todos[index].isFinish) {
-      $("#finishTodo").play();
+      let myPip = new Audio();
+      myPip.src = "./assets/music/finish2.mp3";
+      myPip.play();
    }
 }
-
 function saveMiniTodo(index) {
    todos[index].subTodo.unshift({
-      miniTitle: $(".miniTaskInput").value,
+      miniTitle: $(".miniTaskInput").val(),
    });
    addToLocalStorage(myKey, todos);
    renderExpandTodo(index);
@@ -134,12 +132,14 @@ function finishMinitodo(index, currentIndex) {
    todos[index].subTodo.splice(currentIndex, 1);
    addToLocalStorage(myKey, todos);
    renderExpandTodo(index);
-   $("#finishMiniTodo").play();
+   let myPip = new Audio();
+   myPip.src = "./assets/music/finish.mp3";
+   myPip.play();
 }
-function openExpand(index){
-      listItemExpand.addClass("active");
-      pomodoro.classList.add("pomodoroClose");
-      renderExpandTodo(index);
+function openExpand(index) {
+   listItemExpand.addClass("active");
+   pomodoro.addClass("pomodoroClose");
+   renderExpandTodo(index);
 }
 function removeTodo(index) {
    if (confirm("Are you sure?")) {
@@ -165,7 +165,7 @@ function saveTodo() {
 }
 function closeExpand() {
    listItemExpand.removeClass("active");
-   pomodoro.classList.remove("pomodoroClose");
+   pomodoro.removeClass("pomodoroClose");
 }
 function clearInput() {
    todoInput.val("");
@@ -194,8 +194,8 @@ function addToLocalStorage(key, data) {
 //             <span>${"deadline: " + moment(deadlineInput.val()).toNow(true) + " left"}</span>
 //          </div>
 //       </div>
-//       <div class="listItem_trash" 
-//          onclick="function delete(){ 
+//       <div class="listItem_trash"
+//          onclick="function delete(){
 //             removeTodo(todos, element.parentNode.getAttribute("id-todo"))
 //          }delete()">
 //          <ion-icon name="trash-outline"></ion-icon>
@@ -205,7 +205,7 @@ function addToLocalStorage(key, data) {
 // }
 
 /* function for pomodoro and todolist combine*/
-function workDoneSection(index){
+function workDoneSection(index) {
    let newTimeBlockFinish = parseInt(todos[index].timeBlockFinsh) + 1;
    todos[index].timeBlockFinsh = newTimeBlockFinish;
    addToLocalStorage(myKey, todos);
@@ -213,29 +213,29 @@ function workDoneSection(index){
 
    reportStore.push({
       title: todos[index].timeBlockFinsh,
-      ondate: moment().format('l'),
-      taskFinish:  newTimeBlockFinish,                            
-   })
+      ondate: moment().format("l"),
+      taskFinish: newTimeBlockFinish,
+   });
    addToLocalStorage(reportKey, reportStore);
 }
-function toWork(index){
+function toWork(index) {
    listItemExpand.removeClass("active");
-   pomodoro.classList.remove("pomodoroClose");
+   pomodoro.removeClass("pomodoroClose");
 
    const onTask = `
       <p id-work=${index}>${todos[index].title}</p>
       <span>${todos[index].timeBlockFinsh} </span>
       <span>/</span>
       <span>${todos[index].timeBlock} </span>
-   `
-   pomodoroTask.html(onTask)
+   `;
+   pomodoroTask.html(onTask);
 }
-function onStartWork(){
+function onStartWork() {
    const onTask = `
       <p id-work=${0}>${todos[0].title}</p>
       <span>${todos[0].timeBlockFinsh} </span>
       <span>/</span>
       <span>${todos[0].timeBlock} </span>
-   `
-   pomodoroTask.html(onTask)
+   `;
+   pomodoroTask.html(onTask);
 }
