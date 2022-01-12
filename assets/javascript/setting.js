@@ -134,7 +134,7 @@ function setDefault(key) {
 }
 function openTodo() {
    $(".todo").toggleClass("openTodo");
-   if (window.outerWidth <= 775) {
+   if (window.innerWidth <= 775) {
       pomodoro.toggleClass("pomodoroClose");
    }
 }
@@ -145,11 +145,14 @@ function openBackGround() {
 function openMusic() {
    $(".musicBlock").toggleClass("musicOpen");
    settingBlock.removeClass("settingOpen");
-   if (window.outerWidth <= 775) {
+   if (window.innerWidth <= 775) {
       pomodoro.toggleClass("pomodoroClose");
    }
 }
 function openSetting(){
    settingBlock.toggleClass("settingOpen");
-      $(".musicBlock").removeClass("musicOpen");
+   $(".musicBlock").removeClass("musicOpen");
+   if (window.innerWidth <= 775) {
+      pomodoro.toggleClass("pomodoroClose");
+   }
 }

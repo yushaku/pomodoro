@@ -44,8 +44,9 @@
   .musicBlock.musicOpen {
     right: 50%;
     top: 16%;
-    -webkit-transform: translateX(50%) scale(1.1);
-            transform: translateX(50%) scale(1.1);
+    -webkit-transform: translateX(50%);
+            transform: translateX(50%);
+    height: 590px;
   }
 }
 
@@ -771,7 +772,7 @@
     -webkit-transform: translateX(-50%);
             transform: translateX(-50%);
     width: 450px;
-    height: 650px;
+    height: 600px;
   }
 }
 
@@ -789,6 +790,7 @@
   transition: all 1s;
   top: 50%;
   left: 50%;
+  overflow: hidden;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   width: 700px;
@@ -797,21 +799,14 @@
 
 @media (max-width: 740px) {
   .pomodoro {
-    width: 95%;
-    height: 600px;
+    width: 500px;
+    height: 450px;
   }
 }
 
 .pomodoro .title {
   text-align: center;
   font-size: 32px;
-}
-
-@media (max-width: 740px) {
-  .pomodoro .title {
-    margin-top: 12px;
-    font-size: 34px;
-  }
 }
 
 .pomodoro .title h1 {
@@ -823,6 +818,7 @@
 .pomodoro #clock-container {
   padding-top: 32px;
   height: 45%;
+  overflow: hidden;
 }
 
 .pomodoro #pomodoroTask {
@@ -882,15 +878,6 @@
   display: none;
   padding: 4px;
   cursor: pointer;
-}
-
-@media (max-width: 740px) {
-  .pomodoro #buttons .btn {
-    margin-top: 35px;
-    font-size: 32px;
-    width: 190px;
-    height: 80px;
-  }
 }
 
 .pomodoro #buttons .btn.display {
@@ -957,7 +944,6 @@
 
 .pomodoro .flip-clock-wrapper {
   margin: 24px auto 0;
-  max-width: 460px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -968,14 +954,7 @@
       align-content: center;
   -webkit-transform: scale(1.5);
           transform: scale(1.5);
-}
-
-@media (max-width: 740px) {
-  .pomodoro .flip-clock-wrapper {
-    -webkit-transform: scale(1.5) translateY(30%);
-            transform: scale(1.5) translateY(30%);
-    width: 62%;
-  }
+  width: 100%;
 }
 
 .pomodoro .flip-clock-wrapper .flip-clock-label {
@@ -998,6 +977,13 @@
   top: 70%;
 }
 
+@media (max-width: 740px) {
+  .pomodoro.pomodoroClose {
+    -webkit-transform: translateY(-50%) translateX(-30%) scale(0.1);
+            transform: translateY(-50%) translateX(-30%) scale(0.1);
+  }
+}
+
 header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1010,9 +996,15 @@ header {
           align-items: center;
   width: 100%;
   height: 100px;
-  position: absolute;
   top: 2%;
+  position: absolute;
   z-index: 10;
+}
+
+@media (max-width: 740px) {
+  header {
+    width: 400px;
+  }
 }
 
 header .wapper {
@@ -1031,29 +1023,15 @@ header .wapper {
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-right: 1px solid rgba(255, 255, 255, 0.2);
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  position: fixed;
   border-radius: 8px;
   gap: 20%;
-  width: 550px;
   height: 60px;
+  width: 690px;
 }
 
 @media (max-width: 740px) {
   header .wapper {
-    width: 95%;
-    height: 7%;
-  }
-  header .wapper .logo {
-    -webkit-transform: scale(1.4);
-            transform: scale(1.4);
-  }
-  header .wapper .navbar {
-    padding: 4px 18px;
-    -webkit-transform: scale(1.4);
-            transform: scale(1.4);
-  }
-  header .wapper .navbar span {
-    display: none;
+    width: 550px;
   }
 }
 
@@ -1108,6 +1086,12 @@ header .wapper .navbar ul li span {
   margin-bottom: 4px;
 }
 
+@media (max-width: 740px) {
+  header .wapper .navbar ul li span {
+    display: none;
+  }
+}
+
 header .wapper .navbar ul li ion-icon {
   font-size: 20px;
 }
@@ -1131,12 +1115,6 @@ header .wapper .navbar img {
   width: 100%;
   height: 100vh;
   overflow: hidden;
-}
-
-@media (max-width: 740px) {
-  #banner {
-    height: 136vh;
-  }
 }
 
 #banner iframe,
@@ -1564,13 +1542,6 @@ footer {
   z-index: 10;
 }
 
-@media (max-width: 740px) {
-  footer {
-    -webkit-transform: scale(1.3);
-            transform: scale(1.3);
-  }
-}
-
 footer ul {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1678,13 +1649,6 @@ a {
   position: relative;
   width: 100%;
   height: 100vh;
-}
-
-@media (max-width: 740px) {
-  .container {
-    width: 136%;
-    height: 100%;
-  }
 }
 
 button {

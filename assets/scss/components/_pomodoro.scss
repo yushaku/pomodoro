@@ -2,16 +2,18 @@
 
 .pomodoro {
    @include grassColor;
-   @include mobile {
-      width: 95%;
-      height: 600px;
+   @include mobile{
+      width: 500px;
+      height: 450px;
    }
+
    z-index: 10;
    border-radius: 8px;
    position: absolute;
    transition: all 1s;
    top: 50%;
    left: 50%;
+   overflow: hidden;
    transform: translate(-50%, -50%);
    width: 700px;
    height: 450px;
@@ -19,10 +21,7 @@
    .title {
       text-align: center;
       font-size: 32px;
-      @include mobile {
-         margin-top: 12px;
-         font-size: 34px;
-      }
+
       h1 {
          color: #fff;
          font-weight: 400;
@@ -32,6 +31,7 @@
    #clock-container {
       padding-top: 32px;
       height: 45%;
+      overflow: hidden
    }
    #pomodoroTask {
       @include flexCenter;
@@ -39,10 +39,10 @@
       font-size: 24px;
       margin-bottom: 12px;
 
-      p{
+      p {
          padding-right: 8px;
       }
-      span{
+      span {
          padding: 0 4px;
          font-size: 28px;
          text-shadow: 0 0 8px rgb(255, 197, 8);
@@ -67,38 +67,32 @@
          padding: 4px;
          cursor: pointer;
 
-         @include mobile {
-            margin-top: 35px;
-            font-size: 32px;
-            width: 190px;
-            height: 80px;
-         }
       }
 
-      .btn.display{
+      .btn.display {
          display: block;
       }
-      .btnContinue{
+      .btnContinue {
          animation: goRight 0.7s;
          transform: translateX(-150px);
       }
-      .btnExit{
+      .btnExit {
          animation: goLeft 0.7s;
          transform: translateX(150px);
       }
       @keyframes goRight {
-         0%{
+         0% {
             transform: translateX(-50px);
          }
-         100%{
+         100% {
             transform: translateX(-150px);
          }
       }
       @keyframes goLeft {
-         0%{
+         0% {
             transform: translateX(50px);
          }
-         100%{
+         100% {
             transform: translateX(150px);
          }
       }
@@ -106,16 +100,12 @@
 
    .flip-clock-wrapper {
       margin: 24px auto 0;
-      max-width: 460px;
       display: flex;
       justify-content: center;
       align-content: center;
       transform: scale(1.5);
+      width: 100%;
 
-      @include mobile {
-         transform: scale(1.5)translateY(30%);
-         width: 62%;
-      }
 
       .flip-clock-label {
          color: #fff;
@@ -123,7 +113,7 @@
          margin: auto;
          right: -100px;
       }
-      .flip{
+      .flip {
          transform-style: preserve-3d;
          perspective: 1000px;
       }
@@ -132,5 +122,8 @@
 .pomodoro.pomodoroClose {
    opacity: 0;
    visibility: hidden;
-   top:70%;
+   top: 70%;
+   @include mobile{
+      transform: translateY(-50%) translateX(-30%) scale(0.1) ;
+   }
 }

@@ -2,36 +2,25 @@
 
 header {
    @include flexCenter;
+@include mobile{
+   width: 400px;
+}
    width: 100%;
    height: 100px;
-   position: absolute;
    top: 2%;
+   position: absolute;
    z-index: 10;
 
    .wapper {
       @include flexCenter;
       @include grassColor;
-      @include mobile {
-         width: 95%;
-         height: 7%;
-
-         .logo {
-            transform: scale(1.4);
-
-         }
-         .navbar {
-            padding: 4px 18px;
-            transform: scale(1.4);
-            span {
-               display: none;
-            }
-         }
+      @include mobile{
+         width: 550px;
       }
-      position: fixed;
       border-radius: 8px;
       gap: 20%;
-      width: 550px;
       height: 60px;
+      width: 690px;
       .logo {
          align-self: center;
          a {
@@ -56,6 +45,9 @@ header {
 
                span {
                   margin-bottom: 4px;
+                  @include mobile{
+                     display: none;
+                  }
                }
                ion-icon {
                   font-size: $h3-font-size;
@@ -73,13 +65,9 @@ header {
 
 #banner {
    @include flexCenter;
-   @include mobile {
-      height: 136vh;
-   }
    width: 100%;
    height: 100vh;
    overflow: hidden;
-   
    
    iframe,
    .img,
@@ -358,9 +346,6 @@ footer {
    height: 60px;
    border-radius: 12px;
    z-index: 10;
-   @include mobile {
-      transform: scale(1.3);
-   }
 
    ul {
       @include flexCenter;
