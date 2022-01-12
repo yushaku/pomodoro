@@ -1,5 +1,5 @@
+import { mySongs } from './data.js'
 const $ = document.querySelector.bind(document);
-const $$ = document.querySelectorAll.bind(document);
 
 const musicBK = $(".musicBlock");
 const player = $(".btn-toggle-play");
@@ -26,56 +26,7 @@ const app = {
       this.config[key] = value;
       localStorage.setItem(PLAYER_STORAGE_KEY, JSON.stringify(this.config));
    },
-   songs: [
-      {
-         singer: "Shane Ivers",
-         name: "Precious Memories ",
-         path: "https://www.chosic.com/wp-content/uploads/2021/02/precious-memories.mp3",
-         img: "https://images.pexels.com/photos/3521937/pexels-photo-3521937.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      },
-      {
-         singer: "Pháo, Mouse T, Wack",
-         name: "Warm Memories – Emotional Inspiring Piano",
-         path: "https://www.chosic.com/wp-content/uploads/2021/02/Warm-Memories-Emotional-Inspiring-Piano.mp3",
-         img: "https://images.pexels.com/photos/4665064/pexels-photo-4665064.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      },
-      {
-         singer: "DH, GDucky, Minh",
-         name: "Adventure",
-         path: "https://www.chosic.com/wp-content/uploads/2021/05/Adventure-320bit.mp3",
-         img: "https://images.pexels.com/photos/3345882/pexels-photo-3345882.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
-      },
-      {
-         singer: "Tage",
-         name: "Art Of Silence",
-         path: "https://www.chosic.com/wp-content/uploads/2020/07/Art-Of-Silence_V2.mp3",
-         img: "https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-      },
-      {
-         singer: "MCK, Tlinh",
-         name: "Morning Routine",
-         path: "https://www.chosic.com/wp-content/uploads/2021/09/Morning-Routine-Lofi-Study-Music.mp3",
-         img: "https://images.pexels.com/photos/4974912/pexels-photo-4974912.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-      },
-      {
-         singer: "MCK, Tlinh",
-         name: "Still Awake",
-         path: "https://www.chosic.com/wp-content/uploads/2021/09/Still-Awake-Lofi-Study-Music.mp3",
-         img: "https://images.pexels.com/photos/3082341/pexels-photo-3082341.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      },
-      {
-         singer: "MCK, Tlinh",
-         name: "Stardust",
-         path: "https://www.chosic.com/wp-content/uploads/2021/12/alex-productions-calm-and-sleeping-lo-fi-hip-hop.mp3",
-         img: "https://images.pexels.com/photos/265129/pexels-photo-265129.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      },
-      {
-         singer: "MCK, Tlinh",
-         name: "Stardust",
-         path: "https://www.chosic.com/wp-content/uploads/2021/12/alex-productions-calm-and-sleeping-lo-fi-hip-hop.mp3",
-         img: "https://images.pexels.com/photos/374897/pexels-photo-374897.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      },
-   ],
+   songs: mySongs,
    defindProperties: function () {
       Object.defineProperty(this, "currentSong", {
          get: function () {

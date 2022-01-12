@@ -9,8 +9,8 @@ const pomodoroTask = $('#pomodoroTask')
 const myKey = "TODOs";
 const reportKey = "report"
 
-const todos = getTodoFromLocalStorage(myKey);
-const reportStore = getTodoFromLocalStorage(reportKey);
+const todos = getDataFromLocalStorage(myKey);
+const reportStore = getDataFromLocalStorage(reportKey);
 
 function runTodoApp() {
    render(todos);
@@ -173,7 +173,7 @@ function clearInput() {
    deadlineInput.val("");
    counterInput.val("");
 }
-function getTodoFromLocalStorage(key) {
+function getDataFromLocalStorage(key) {
    return JSON.parse(localStorage.getItem(key)) || [];
 }
 function addToLocalStorage(key, data) {
