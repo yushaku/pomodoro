@@ -3,12 +3,14 @@ import { myBackgrounds } from "./data.js";
 const bgSetting = $(".backgroundSetting");
 const pomodoro = $(".pomodoro");
 const settingBlock = $("#setting");
+const reportBlock = $("#report")
 const studyTimeInput = $("#studyTime");
 const breakTimeInput = $("#breakTime");
 const longBreakTimeInput = $("#longBreakTime");
 const autoStartBreak = $("#autoStartBreak");
 const autoStartStudy = $("#autoStartStudy");
 const breakInervalInput = $("#breakInerval");
+const elem = document.documentElement;
 
 const backgrounds = myBackgrounds;
 const POMODORO_SETTING = "POMODORO_SETTING";
@@ -83,8 +85,14 @@ function handleEvent() {
    });
 
    $(".settingBtn").click(() => {
-      openSetting()
+      openSetting();
    });
+   $(".reportBtn").click(() => {
+      openReport();
+   });
+   $('.closeReport').click(()=>{
+      openReport();
+   })
 
    $(".apply").click((e) => {
       e.preventDefault();
@@ -110,15 +118,18 @@ function handleEvent() {
          //alert(`Key pressed ${name} \r\n Key code value: ${code}`);
          if (name === "t") {
             openTodo();
-         }
-         else if(name == 'm'){
-            openMusic()
-         }
-         else if(name == 'b'){
-            openBackGround()
-         }
-         else if(name =='s'){
-            openSetting()
+         } else if (name == "m") {
+            openMusic();
+         } else if (name == "b") {
+            openBackGround();
+         } else if (name == "s") {
+            openSetting();
+         }else if(name == 'r'){
+            openReport()
+         }else if(name =='f'){
+            openFullscreen();
+         }else if(name == 'Exscape'){
+            closeFullscreen()
          }
       },
       false
@@ -149,10 +160,36 @@ function openMusic() {
       pomodoro.toggleClass("pomodoroClose");
    }
 }
-function openSetting(){
+function openSetting() {
    settingBlock.toggleClass("settingOpen");
    $(".musicBlock").removeClass("musicOpen");
    if (window.innerWidth <= 775) {
       pomodoro.toggleClass("pomodoroClose");
+   }
+}
+function openReport() {
+   reportBlock.toggleClass("reportClose");
+   pomodoro.toggleClass("pomodoroClose");
+}
+function openFullscreen() {
+   if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+   } else if (elem.webkitRequestFullscreen) {
+      /* Safari */
+      elem.webkitRequestFullscreen();
+   } else if (elem.msRequestFullscreen) {
+      /* IE11 */
+      elem.msRequestFullscreen();
+   }
+}
+function closeFullscreen() {
+   if (document.exitFullscreen) {
+      document.exitFullscreen();
+   } else if (document.webkitExitFullscreen) {
+      /* Safari */
+      document.webkitExitFullscreen();
+   } else if (document.msExitFullscreen) {
+      /* IE11 */
+      document.msExitFullscreen();
    }
 }

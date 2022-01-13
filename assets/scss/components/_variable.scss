@@ -32,6 +32,7 @@ body.dark-theme {
    border: 1px solid rgba(255, 255, 255, 0.5);
    border-right: 1px solid rgba(255, 255, 255, 0.2);
    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+   backdrop-filter: blur(2px);
 }
 @mixin water {
    width: 150px;height: 150px;

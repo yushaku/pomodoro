@@ -44,13 +44,16 @@ header {
                cursor: pointer;
 
                span {
-                  margin-bottom: 4px;
                   @include mobile{
                      display: none;
                   }
                }
                ion-icon {
                   font-size: $h3-font-size;
+                  padding-bottom: 0px;
+               }
+               &:hover{
+                  background: linear-gradient(to right, rgba(64, 189, 15, 0.548), rgba(39, 79, 255, 0.438));
                }
             }
          }
@@ -344,7 +347,7 @@ footer {
    bottom: 2%;
    min-width: 360px;
    height: 60px;
-   border-radius: 12px;
+   border-radius: 24px;
    z-index: 10;
 
    ul {

@@ -54,6 +54,19 @@ export const myBackgrounds= [
       path: "./assets/img/video5.mp4",
       video: "./assets/img/video5.mp4",
    },
+   {
+      type: "video",
+      title: "code with me",
+      path: "https://s3.us-east-2.amazonaws.com/lofi.co/lofi.co/scenes/chill-vibes/BDR%20STARRY%20NIGHT%20-.mp4",
+      video: "./assets/img/video5.mp4",
+   },
+   {
+      type: "video",
+      title: "code with me",
+      path: "https://s3.us-east-2.amazonaws.com/lofi.co/lofi.co/scenes/chill-vibes/BDR%20Day%20112521%20%281%29.mp4",
+      video: "./assets/img/video5.mp4",
+   },
+   
 ]
 
 export const mySongs = [
@@ -106,4 +119,31 @@ export const mySongs = [
       img: "https://images.pexels.com/photos/374897/pexels-photo-374897.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
    },
 ]
+
+export const chart = {
+   labels: ["player1", "player2", "player3", "player4"],
+   datasets: [
+      {
+         label: "player 1 score",
+         data: [10, 20, 60, 10],
+         backgroundColor: [
+            "rgba(255, 99, 132, 0.9)",
+            "rgba(54, 162, 235, 0.9)",
+            "rgba(255, 206, 86, 0.9)",
+            "rgba(75, 192, 192, 0.9)",
+            "rgba(153, 102, 255, 0.9)",
+            "rgba(255, 159, 64, 0.9)",
+         ],
+         border: [
+            "rgba(255, 99, 132, 0.9)",
+            "rgba(54, 162, 235, 0.9)",
+            "rgba(255, 206, 86, 0.9)",
+            "rgba(75, 192, 192, 0.9)",
+            "rgba(153, 102, 255, 0.9)",
+            "rgba(255, 159, 64, 0.9)",
+         ],
+         borderWidth: 1,
+      },
+   ],
+};
 

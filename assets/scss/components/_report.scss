@@ -1,0 +1,137 @@
+@import "./variable";
+
+#report {
+   @include grassColor;
+   position: absolute;
+   transition: all 0.5s linear;
+   top: 15%;
+   width: 690px;
+   height: 590px;
+   color: #fff;
+   padding: 16px;
+   overflow: auto;
+   border-radius: 8px;
+   &::-webkit-scrollbar{
+      display: none;
+   }
+   
+
+   h2 {
+      font-weight: 500;
+      margin-bottom: 20px;
+   }
+   button {
+      &:before{
+         border-radius: 8px;
+      }
+      &:nth-child(1) {
+         border-radius: 8px 0 0 8px;
+      }
+      &:nth-child(2) {
+         border-radius: 0px;
+      }
+      &:nth-child(3) {
+         border-radius: 0 8px 8px 0;
+      }
+      &.active{
+         background: linear-gradient(to right, rgba(56, 135, 253, 0.507), rgba(5, 238, 25, 0.555));
+      }
+   }
+   .reportHeader {
+      @include flexCenter;
+      position: absolute;
+      width: 90%;
+      height: 36px;
+
+      h1 {
+         font-weight: 600;
+         font-family: "Fuzzy Bubbles";
+         font-size: 50px;
+         text-shadow: 0 0 10px rgb(14, 70, 255);
+         padding-bottom: 0;
+         padding-left: 48px;
+         margin-bottom: 0;
+      }
+
+      ion-icon {
+         position: absolute;
+         right: -30px;
+         font-size: 36px;
+         cursor: pointer;
+      }
+   }
+
+   .reportOption {
+      @include flexCenter;
+      height: 80px;
+      margin-top: 46px;
+      button {
+         width: 33%;
+      }
+   }
+   .reportSumary {
+      .reportSumary_wapper {
+         @include flexCenter;
+         gap: 3%;
+         margin-bottom: 16px;
+
+         .reportSumary_item {
+            @include grassColor;
+            text-align: center;
+            border-radius: 8px;
+            width: 30%;
+            h3 {
+               font-weight: 500;
+            }
+
+            .reportSumary_itemDesp {
+               @include flexCenter;
+               gap: 16px;
+               h1 {
+                  font-weight: 500;
+               }
+               ion-icon {
+                  font-size: 36px;
+               }
+            }
+         }
+      }
+   }
+   .reportHours {
+      .reportHours_option {
+         display: flex;
+         justify-content: end;
+         button {
+            width: 13%;
+            padding: 4px;
+         }
+      }
+      .reportHours_chart {
+         margin-top: 18px;
+         .reportHours_chart-option {
+            display: flex;
+            justify-content: end;
+            button {
+               width: 10%;
+               padding: 2px;
+               height: 26px;
+            }
+         }
+         .reportHours_chart-detail {
+            width: 100%;
+            color: #fff;
+         }
+      }
+   }
+   .reportTotal {
+      @include flexCenter;
+      justify-content: space-between;
+      margin-top: 26px;
+      padding: 36px;
+   }
+   &.reportClose{
+      transform: scale(0.3) translateY(-50%);
+      opacity: 0;
+      visibility: hidden;
+   }
+}

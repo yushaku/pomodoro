@@ -18,7 +18,7 @@
                </div>
                <div class="navbar">
                   <ul>
-                     <li>
+                     <li class="reportBtn">
                         <ion-icon name="bar-chart-outline"></ion-icon>
                         <span>Report</span>
                      </li>
@@ -125,7 +125,7 @@
 
          </div>
 
-         <div class="backgroundSetting">
+         <div class="backgroundSetting ">
             <h1>Background</h1>
 
             <div class="themeBlock">
@@ -182,8 +182,70 @@
             </div>
          </div>
 
-         <div id="report">
-            
+         <div id="report" class="reportClose">
+            <div class="reportHeader">
+               <h1>Report</h1>
+               <ion-icon class="closeReport" name="close-outline"></ion-icon>
+            </div>
+
+            <div class="reportOption">
+               <button class="sumaryReport">Sumary</button>
+               <button class="detailReport">Details</button>
+               <button class="rankingReport">Ranking</button>
+            </div>
+            <div class="reportSumary">
+               <h2>Report Sumary</h2>
+
+               <div class="reportSumary_wapper">
+
+                  <div class="reportSumary_item">
+                     <h3>hours focused</h3>
+                     <div class="reportSumary_itemDesp">
+                        <ion-icon name="timer-outline"></ion-icon>
+                        <h1>9.8</h1>
+                     </div>
+                  </div>
+                  <div class="reportSumary_item">
+                     <h3>days accessed</h3>
+                     <div class="reportSumary_itemDesp">
+                        <ion-icon name="calendar-outline"></ion-icon>
+                        <h1>10</h1>
+                     </div>
+                  </div>
+                  <div class="reportSumary_item">
+                     <h3>day streak</h3>
+                     <div class="reportSumary_itemDesp">
+                        <ion-icon name="flash-outline"></ion-icon>
+                        <h1>3</h1>
+                     </div>
+                  </div>
+               </div>
+
+            </div>
+
+            <div class="reportHours">
+               <h2>Focus hours</h2>
+
+               <div class="reportHours_option">
+                  <button class="dayReport">Day</button>
+                  <button class="weekReport">Week</button>
+                  <button class="yearReport">Year</button>
+               </div>
+               <div class="reportHours_chart">
+                  <div class="reportHours_chart-option">
+                     <button class="reportHours_chart-prev"><</button>
+                     <button class="reportHours_chart-time">Today</button>
+                     <button class="reportHours_chart-next">></button>
+                  </div>
+                  <div class="reportHours_chart-detail">
+                     <canvas id="lineChart"></canvas>
+                  </div>
+               </div>
+            </div>
+            <div class="reportTotal">
+               <h2>Total</h2>
+               <h2>50 hours</h2>
+            </div>
          </div>
 
          <div class="musicBlock">
@@ -251,6 +313,8 @@
       </div>
 
 
+      <!-- chart js -->
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
       <!-- timming -->
       <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js" integrity="sha512-LGXaggshOkD/at6PFNcp2V2unf9LzFq6LE+sChH7ceMTDP0g2kn6Vxwgg7wkPP7AAtX+lmPqPdxB47A0Nz0cMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
       
@@ -264,6 +328,7 @@
       <script Type="module" src="./assets/javascript/setting.js"></script>
       <script type="module" src="./assets/javascript/data.js"></script>
       <script type="module" src="./assets/javascript/pomodoro.js"></script>
+      <script type="module" src="./assets/javascript/report.js"></script>
 
       <!-- icon online  -->
       <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
