@@ -113,22 +113,22 @@ function handleEvent() {
    document.addEventListener(
       "keydown",
       (event) => {
+         
          var name = event.key;
-         var code = event.code;
          //alert(`Key pressed ${name} \r\n Key code value: ${code}`);
-         if (name === "t") {
+         if (name == "T"  && event.shiftKey) {
             openTodo();
-         } else if (name == "m") {
+         } else if (event.shiftKey && name == "M") {
             openMusic();
-         } else if (name == "b") {
+         } else if (event.shiftKey && name == "B") {
             openBackGround();
-         } else if (name == "s") {
+         } else if (event.shiftKey && name == "S") {
             openSetting();
-         }else if(name == 'r'){
+         }else if(event.shiftKey && name == 'R'){
             openReport()
-         }else if(name =='f'){
+         }else if(event.shiftKey && name =='F'){
             openFullscreen();
-         }else if(name == 'Exscape'){
+         }else if(event.shiftKey && name == 'Exscape'){
             closeFullscreen()
          }
       },
@@ -193,3 +193,4 @@ function closeFullscreen() {
       document.msExitFullscreen();
    }
 }
+

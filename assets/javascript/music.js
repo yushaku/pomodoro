@@ -145,7 +145,7 @@ const musicPlayer = {
          "keydown",
          (event) => {
             var name = event.code;
-            if (name === "Space") {
+            if (name === "Space" && event.shiftKey) {
                _this.isPlaying ? audio.pause() : audio.play();
             } else if (name == "ArrowUp") {
                audio.volume = 1 ? (audio.volume = 1) : (audio.volume += 0.1);
