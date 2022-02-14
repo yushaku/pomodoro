@@ -20,7 +20,7 @@ let pomodoroConfig = {};
    renderTheme();
    renderVideoList();
    handleEvent();
-   setDefault(POMODORO_SETTING);
+   setDefault();
 })();
 
 function renderTheme() {
@@ -56,12 +56,6 @@ function renderVideoList() {
 function handleEvent() {
    const feature = $(".feature");
 
-   // feature.each((index, element) => {
-   //    element.onclick = () => {
-   //       element.classList.toggle("openFeature");
-   //    };
-   // });
-
    $(".featureTodo").click(() => {
       openTodo();
    });
@@ -73,10 +67,12 @@ function handleEvent() {
    $(".featureSong").click(() => {
       openMusic();
    });
+   $(".closeMusicButton").click(()=>{
+      openMusic();
+   });
 
    $(".themeItem").each((index, item) => {
       item.onclick = () => {
-         console.log(item.innerHTML);
          $("#banner").html(item.innerHTML);
          bgSetting.removeClass("bgSettingOpen");
          feature[1].classList.remove("openFeature");
@@ -135,13 +131,18 @@ function handleEvent() {
       false
    );
 }
-function setDefault(key) {
-   studyTimeInput.val(getDataFromLocalStorage(key).studyTime ?? studyTime);
-   breakTimeInput.val(getDataFromLocalStorage(key).breakTime ?? breakTime);
-   longBreakTimeInput.val(getDataFromLocalStorage(key).longBreakTime ?? longBreakTime);
-   breakInervalInput.val(getDataFromLocalStorage(key).LongbreakInterval ?? LongbreakInterval);
-   autoStartBreak.prop("checked", getDataFromLocalStorage(key).autoStartBreak ?? isAutoBreak);
-   autoStartStudy.prop("checked", getDataFromLocalStorage(key).autoStartStudy ?? isAutoStudy);
+
+function setDefault() {
+
+   const pomodoroSetting = getDataFromLocalStorage(POMODORO_SETTING)
+
+   studyTimeInput.val(pomodoroSetting.studyTime ?? studyTime);
+   breakTimeInput.val(pomodoroSetting.breakTime ?? breakTime);
+   longBreakTimeInput.val(pomodoroSetting.longBreakTime ?? longBreakTime);
+   breakInervalInput.val(pomodoroSetting.LongbreakInterval ?? LongbreakInterval);
+   autoStartBreak.prop("checked", pomodoroSetting.autoStartBreak ?? isAutoBreak);
+   autoStartStudy.prop("checked", pomodoroSetting.autoStartStudy ?? isAutoStudy);
+
 }
 function openTodo() {
    $(".todo").toggleClass("openTodo");

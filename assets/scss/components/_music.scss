@@ -1,6 +1,6 @@
-@import './variable' ;
+@import "./variable";
 
-.musicBlock{
+.musicBlock {
    @include grassColor;
    position: fixed;
    height: 600px;
@@ -14,112 +14,153 @@
    visibility: hidden;
    z-index: 10;
 
-   @include mobile{
+   @include mobile {
       transform: scale(0.3);
       top: -10%;
       right: -20%;
    }
-}
-.musicBlock::-webkit-scrollbar{
-   display: none;
+   &::-webkit-scrollbar {
+      display: none;
+   }
 }
 
-.musicBlock.musicOpen{
+.musicBlock.musicOpen {
    top: 15%;
    right: 2%;
-   visibility:visible;
+   visibility: visible;
    opacity: 1;
 
-   @include mobile{
-      right:50%;
+   @include mobile {
+      right: 50%;
       top: 16%;
       transform: translateX(50%);
       height: 590px;
    }
-   .player{
-      .songTitle{
+   .player {
+      .songTitle {
          top: 15%;
       }
    }
 }
-.player{
-   @include grassColor;
+.player {
    border-radius: 8px;
    position: relative;
    width: 360px;
-   .dashboard{
+
+   .dashboard {
       @include flexCenter;
       flex-direction: column;
 
-      .songTitle{
+      .songTitle {
          color: #fff;
          width: 360px;
          text-align: center;
          top: 2%;
          margin: 14px 0 0;
-         h2{
+         h2 {
             font-size: 24px;
             font-weight: 600;
          }
+         .volume,
+         .closeMusicButton {
+            position: absolute;
+            top: 2.1%;
+            cursor: pointer;
+            ion-icon {
+               font-size: 28px;
+               padding-bottom: 18px;
+            }
+         }
+         .volume {
+            left: 5%;
+            ion-icon:hover ~ .volumeProcess {
+               display: inline-block;
+            }
+            .volumeProcess {
+               position: absolute;
+               display: none;
+               background: transparent;
 
+               transform: rotateZ(-90deg) translateX(-90px) translateY(-80px);
+               &:hover {
+                  display: inline-block;
+               }
+               &::-moz-range-progress {
+                  background-color: #43e5f7;
+               }
+               &::-moz-range-track {
+                  background-color: #9a905d;
+               }
+               &::-ms-fill-lower {
+                  background-color: #43e5f7;
+               }
+               &::-ms-fill-upper {
+                  background-color: #9a905d;
+               }
+            }
+
+         }
+         .closeMusicButton {
+            right: 5%;
+         }
       }
-      .cd{
+      .cd {
          display: flex;
-         margin: 16px 0 16px 0 ;
-         .cd-thumb{
-            width: 200px;height: 200px;
+         margin: 16px 0 16px 0;
+         .cd-thumb {
+            width: 200px;
+            height: 200px;
             border-radius: 50%;
             background-size: cover;
          }
       }
-      .control{
+      .control {
          @include flexCenter;
          color: #fff;
          gap: 16px;
-         ion-icon{
+         ion-icon {
             @include grassColor;
             padding: 4px;
             border-radius: 50%;
-            font-size:28px;
+            font-size: 28px;
          }
-         .btn{
+         .btn {
             width: 38px;
             height: 38px;
             border-radius: 50%;
             cursor: pointer;
          }
-         .btn:nth-child(3){
+         .btn:nth-child(3) {
             width: 40px;
             height: 40px;
-            ion-icon{
+            ion-icon {
                font-size: 40px;
             }
          }
 
-         .btn-toggle-play{
-            ion-icon[name='pause-outline']{
+         .btn-toggle-play {
+            ion-icon[name="pause-outline"] {
                display: none;
             }
          }
 
-         .btn-toggle-play.musicPlaying{
-            ion-icon[name='pause-outline']{
+         .btn-toggle-play.musicPlaying {
+            ion-icon[name="pause-outline"] {
                display: block;
             }
-            ion-icon[name='play-outline']{
+            ion-icon[name="play-outline"] {
                display: none;
             }
          }
          .btn-repeat.active,
-         .btn-random.active{
-            ion-icon{
+         .btn-random.active {
+            ion-icon {
                box-shadow: 0 0 5px rgb(7, 71, 248);
                background: rgba(7, 71, 248, 0.248);
             }
          }
-
       }
-      .progress{
+      .progress {
          margin: 18px 0;
          width: 90%;
          height: 6px;
@@ -132,66 +173,61 @@
       }
       .progress::-webkit-slider-thumb {
          -webkit-appearance: none;
-         appearance:inherit;
+         appearance: inherit;
          width: 12px;
          height: 6px;
          background-color: red;
          cursor: pointer;
       }
       .progress::-webkit-progress-value {
-         background-color:#0095dd;
+         background-color: #0095dd;
       }
-
    }
 
-   .playlist{
-      @include grassColor;
+   .playlist {
       margin-top: 18px;
       min-height: 300px;
-      padding: 32px 4px 16px 22px;
+      padding: 18px 4px 16px 22px;
       border-radius: 58px 0 0 0;
       overflow: hidden;
       cursor: pointer;
-      .song{
+      .song {
          @include grassColor;
          display: flex;
          width: 100%;
          margin: 8px 0;
          padding: 4px;
-         border-radius: 16px 0 16px 8px ;
+         border-radius: 16px 0 16px 8px;
 
-         .thumb{
-            width: 46px;height: 46px;
+         .thumb {
+            width: 46px;
+            height: 46px;
             background-size: cover;
             border-radius: 50%;
          }
-         .body{
+         .body {
             flex: 1;
             margin-left: 10px;
             color: #fff;
-            .title{
+            .title {
                font-size: 18px;
                font-weight: 400;
             }
-            .author{
+            .author {
                font-size: 14px;
                font-weight: 300;
             }
          }
-         .option{
+         .option {
             padding-top: 12px;
-            ion-icon{
+            ion-icon {
                color: #fff;
                font-size: 24px;
             }
          }
       }
-      .song.active{
-         background: linear-gradient(to right ,rgba(235, 109, 109, 0.5), rgba(48, 155, 48, 0.5), rgba(18, 88, 218, 0.5),rgba(213, 247, 90, 0.5));
+      .song.active {
+         background: linear-gradient(to right, rgba(0, 81, 185, 0.356), rgba(75, 243, 255, 0.438));
       }
    }
-
 }
-
-
-

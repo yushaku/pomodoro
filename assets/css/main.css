@@ -57,14 +57,6 @@
 }
 
 .player {
-  background: rgba(255, 255, 255, 0.11);
-  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-right: 1px solid rgba(255, 255, 255, 0.2);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  -webkit-backdrop-filter: blur(2px);
-          backdrop-filter: blur(2px);
   border-radius: 8px;
   position: relative;
   width: 360px;
@@ -97,6 +89,59 @@
 .player .dashboard .songTitle h2 {
   font-size: 24px;
   font-weight: 600;
+}
+
+.player .dashboard .songTitle .volume,
+.player .dashboard .songTitle .closeMusicButton {
+  position: absolute;
+  top: 2.1%;
+  cursor: pointer;
+}
+
+.player .dashboard .songTitle .volume ion-icon,
+.player .dashboard .songTitle .closeMusicButton ion-icon {
+  font-size: 28px;
+  padding-bottom: 18px;
+}
+
+.player .dashboard .songTitle .volume {
+  left: 5%;
+}
+
+.player .dashboard .songTitle .volume ion-icon:hover ~ .volumeProcess {
+  display: inline-block;
+}
+
+.player .dashboard .songTitle .volume .volumeProcess {
+  position: absolute;
+  display: none;
+  background: transparent;
+  -webkit-transform: rotateZ(-90deg) translateX(-90px) translateY(-80px);
+          transform: rotateZ(-90deg) translateX(-90px) translateY(-80px);
+}
+
+.player .dashboard .songTitle .volume .volumeProcess:hover {
+  display: inline-block;
+}
+
+.player .dashboard .songTitle .volume .volumeProcess::-moz-range-progress {
+  background-color: #43e5f7;
+}
+
+.player .dashboard .songTitle .volume .volumeProcess::-moz-range-track {
+  background-color: #9a905d;
+}
+
+.player .dashboard .songTitle .volume .volumeProcess::-ms-fill-lower {
+  background-color: #43e5f7;
+}
+
+.player .dashboard .songTitle .volume .volumeProcess::-ms-fill-upper {
+  background-color: #9a905d;
+}
+
+.player .dashboard .songTitle .closeMusicButton {
+  right: 5%;
 }
 
 .player .dashboard .cd {
@@ -157,15 +202,15 @@
   font-size: 40px;
 }
 
-.player .dashboard .control .btn-toggle-play ion-icon[name='pause-outline'] {
+.player .dashboard .control .btn-toggle-play ion-icon[name="pause-outline"] {
   display: none;
 }
 
-.player .dashboard .control .btn-toggle-play.musicPlaying ion-icon[name='pause-outline'] {
+.player .dashboard .control .btn-toggle-play.musicPlaying ion-icon[name="pause-outline"] {
   display: block;
 }
 
-.player .dashboard .control .btn-toggle-play.musicPlaying ion-icon[name='play-outline'] {
+.player .dashboard .control .btn-toggle-play.musicPlaying ion-icon[name="play-outline"] {
   display: none;
 }
 
@@ -203,17 +248,9 @@
 }
 
 .player .playlist {
-  background: rgba(255, 255, 255, 0.11);
-  -webkit-box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
-          box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  border-right: 1px solid rgba(255, 255, 255, 0.2);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  -webkit-backdrop-filter: blur(2px);
-          backdrop-filter: blur(2px);
   margin-top: 18px;
   min-height: 300px;
-  padding: 32px 4px 16px 22px;
+  padding: 18px 4px 16px 22px;
   border-radius: 58px 0 0 0;
   overflow: hidden;
   cursor: pointer;
@@ -272,8 +309,8 @@
 }
 
 .player .playlist .song.active {
-  background: -webkit-gradient(linear, left top, right top, from(rgba(235, 109, 109, 0.5)), color-stop(rgba(48, 155, 48, 0.5)), color-stop(rgba(18, 88, 218, 0.5)), to(rgba(213, 247, 90, 0.5)));
-  background: linear-gradient(to right, rgba(235, 109, 109, 0.5), rgba(48, 155, 48, 0.5), rgba(18, 88, 218, 0.5), rgba(213, 247, 90, 0.5));
+  background: -webkit-gradient(linear, left top, right top, from(rgba(0, 81, 185, 0.356)), to(rgba(75, 243, 255, 0.438)));
+  background: linear-gradient(to right, rgba(0, 81, 185, 0.356), rgba(75, 243, 255, 0.438));
 }
 
 .todo {
@@ -992,16 +1029,7 @@
 }
 
 .pomodoro.pomodoroClose {
-  opacity: 0;
-  visibility: hidden;
-  top: 70%;
-}
-
-@media (max-width: 740px) {
-  .pomodoro.pomodoroClose {
-    -webkit-transform: translateY(-50%) translateX(-30%) scale(0.1);
-            transform: translateY(-50%) translateX(-30%) scale(0.1);
-  }
+  display: none;
 }
 
 header {
@@ -1141,7 +1169,6 @@ header .wapper .navbar img {
   overflow: hidden;
 }
 
-#banner iframe,
 #banner .img,
 #banner video {
   -webkit-filter: contrast(110%) brightness(70%);
@@ -1155,7 +1182,6 @@ header .wapper .navbar img {
   height: 100%;
 }
 
-#banner iframe p,
 #banner .img p,
 #banner video p {
   display: none;
@@ -1172,10 +1198,9 @@ header .wapper .navbar img {
           backdrop-filter: blur(2px);
   position: absolute;
   width: 60%;
-  height: 100px;
-  top: 70%;
-  opacity: 0;
-  visibility: hidden;
+  height: 540px;
+  top: 20%;
+  display: none;
   z-index: 10;
   border-radius: 8px;
   -webkit-transition: all 1s ease-in-out;
@@ -1272,10 +1297,7 @@ header .wapper .navbar img {
 }
 
 .bgSettingOpen.backgroundSetting {
-  top: 20%;
-  opacity: 1;
-  height: 540px;
-  visibility: visible;
+  display: block;
 }
 
 .backgroundSetting.bgSettingOpen::after {
@@ -1292,14 +1314,11 @@ header .wapper .navbar img {
   -webkit-backdrop-filter: blur(2px);
           backdrop-filter: blur(2px);
   position: absolute;
-  opacity: 0;
-  visibility: hidden;
   -webkit-transition: all 0.5s linear;
   transition: all 0.5s linear;
-  top: -15%;
-  right: 25%;
-  -webkit-transform: scale(0.1);
-          transform: scale(0.1);
+  top: 15%;
+  right: 2%;
+  display: none;
   padding: 8px;
   border-radius: 8px;
   color: #fff;
@@ -1539,12 +1558,7 @@ header .wapper .navbar img {
 }
 
 #setting.settingOpen {
-  top: 15%;
-  right: 2%;
-  opacity: 1;
-  visibility: visible;
-  -webkit-transform: scale(1);
-          transform: scale(1);
+  display: block;
 }
 
 footer {

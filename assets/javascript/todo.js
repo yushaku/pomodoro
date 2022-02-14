@@ -83,10 +83,11 @@ function renderExpandTodo(index) {
             <input type="date" name="" class="dateLineFix" value = ${currentTodo.date}>
             <div class="btnBLock">
                   <button class="btnCancel" onclick="closeExpand()">Cancel</button>
-                  <button class="btnSave" onclick = "saveExpandTodo(${index})">Save</button>
+                  <button class="btnSave" onclick="saveExpandTodo(${index})">Save</button>
             </div>`;
    listItemExpand.html(currentTodoExpand);
 }
+
 function handleEvent() {
    $(".cancelTodo").click(() => {
       inputForm.removeClass("active");
@@ -121,13 +122,17 @@ function saveMiniTodo(index) {
    addToLocalStorage(myKey, todos);
    renderExpandTodo(index);
 }
+
 function saveExpandTodo(index) {
-   todos[index].title = $(".listItem_expand-top h1").textContent;
-   todos[index].desc = $(".desciption").value;
-   todos[index].date = $(".dateLineFix").value;
+
+   todos[index].title = $(".listItem_expand-top h1").text();
+   todos[index].desc = $(".desciption").val();
+   todos[index].date = $(".dateLineFix").val();
+
    addToLocalStorage(myKey, todos);
    render(todos);
 }
+
 function finishMinitodo(index, currentIndex) {
    todos[index].subTodo.splice(currentIndex, 1);
    addToLocalStorage(myKey, todos);
@@ -179,30 +184,6 @@ function getDataFromLocalStorage(key) {
 function addToLocalStorage(key, data) {
    localStorage.setItem(key, JSON.stringify(data));
 }
-
-// function addTodo() {
-//    let index = todos.length + 1;
-//    const nodeTodo = `
-//       <div class="listItem" id-todo = ${index}>
-//       <div class= "listItem_finish"}>
-//          <ion-icon name= "ellipse-outline"}></ion-icon>
-//       </div>
-//       <div class="listItem_detail" >
-//          <h1>${todoInput.val()}</h1>
-//          <div class="listItem_detail-mini">
-//             <span class="prioritize ${selectInput.val()}">${selectInput.val()}</span>
-//             <span>${"deadline: " + moment(deadlineInput.val()).toNow(true) + " left"}</span>
-//          </div>
-//       </div>
-//       <div class="listItem_trash"
-//          onclick="function delete(){
-//             removeTodo(todos, element.parentNode.getAttribute("id-todo"))
-//          }delete()">
-//          <ion-icon name="trash-outline"></ion-icon>
-//       </div>
-//    </div>`;
-//    tastList.append(nodeTodo);
-// }
 
 /* function for pomodoro and todolist combine*/
 function workDoneSection(index) {
