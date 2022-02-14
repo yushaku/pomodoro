@@ -120,10 +120,5 @@
    }
 }
 .pomodoro.pomodoroClose {
-   opacity: 0;
-   visibility: hidden;
-   top: 70%;
-   @include mobile{
-      transform: translateY(-50%) translateX(-30%) scale(0.1) ;
-   }
+   display: none;
 }

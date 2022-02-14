@@ -1,6 +1,11 @@
 export const myBackgrounds= [
    {
       type: "img",
+      title: "work",
+      path: "./assets/img/work.jpg",
+   },
+   {
+      type: "img",
       title: "rose",
       path: "./assets/img/rose.jpg",
    },
@@ -67,6 +72,7 @@ export const myBackgrounds= [
       video: "./assets/img/video5.mp4",
    },
    
+   
 ]
 
 export const mySongs = [
@@ -78,7 +84,7 @@ export const mySongs = [
    },
    {
       singer: "Pháo, Mouse T, Wack",
-      name: "Warm Memories – Emotional Inspiring Piano",
+      name: "Warm Memories",
       path: "https://www.chosic.com/wp-content/uploads/2021/02/Warm-Memories-Emotional-Inspiring-Piano.mp3",
       img: "https://images.pexels.com/photos/4665064/pexels-photo-4665064.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
    },

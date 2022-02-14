@@ -12,6 +12,7 @@ const progress = $("#progress");
 const radomButton = $(".btn-random");
 const repeatButton = $(".btn-repeat");
 const playList = $(".playlist");
+const volumeProgress = $('.volumeProcess')
 
 const PLAYER_STORAGE_KEY = "YUSHAKU_PLAYER";
 
@@ -70,7 +71,6 @@ const musicPlayer = {
       playBtn.onclick = function () {
          _this.isPlaying ? audio.pause() : audio.play();
       };
-
       audio.onplay = function () {
          _this.isPlaying = true;
          player.classList.add("musicPlaying");
@@ -80,6 +80,10 @@ const musicPlayer = {
          _this.isPlaying = false;
          player.classList.remove("musicPlaying");
          cdThumbAnimate.pause();
+      };
+
+      volumeProgress.onclick = function(){
+         audio.volume = volumeProgress.value/100
       };
 
       // ================================================progress===================================
@@ -99,10 +103,10 @@ const musicPlayer = {
       const nextBtn = $(".btn-next");
       const prevBtn = $(".btn-prev");
       nextBtn.onclick = function () {
-         this.playNextSong()
+         _this.playNextSong()
       };
       prevBtn.onclick = function () {
-         this.playPrevSong()
+         _this.playPrevSong()
       };
       ///============================= random/repeat button ===========================================
       radomButton.onclick = function () {
@@ -125,7 +129,7 @@ const musicPlayer = {
          _this.isRepeat ? audio.play() : nextBtn.click();
       };
 
-      // ====================================select a song on play list ==============================
+      // =============================select a song on play list ==============================
       playList.onclick = function (e) {
          const songNode = e.target.closest(".song:not(.active)");
          const songOption = e.target.closest(".option");
@@ -140,6 +144,7 @@ const musicPlayer = {
             }
          }
       };
+
 
       document.addEventListener(
          "keydown",
@@ -160,18 +165,26 @@ const musicPlayer = {
          false
       );
    },
+
    loadCurrentSong: function () {
       heading.textContent = this.currentSong.name;
       cdThumb.style.backgroundImage = `url('${this.currentSong.img}')`;
       audio.src = this.currentSong.path;
    },
+
+   loadVolume:function(){
+      volumeProgress.value = audio.volume*100
+   },
+
    nextSong: function () {
       this.currentIndex++;
+      console.log(this.currentIndex)
       if (this.currentIndex >= this.songs.length) {
          this.currentIndex = 0;
       }
       this.loadCurrentSong();
    },
+
    playNextSong: function () {
       this.isRandom ? this.playRamdom() : this.nextSong();
       audio.play();
@@ -219,6 +232,7 @@ const musicPlayer = {
    },
 
    start: function () {
+      this.loadVolume();
       this.loadConfig();
       // định nghĩa them các property của object
       this.defindProperties();

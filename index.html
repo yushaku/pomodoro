@@ -6,7 +6,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="stylesheet" href="./assets/css/flipClock.css"/>
       <link rel="stylesheet" href="./assets/css/main.css" />
-      <link rel="shortcut icon" type="image/png" href="./assets/img/favicon.png"/>
+      <link rel="shortcut icon" type="image/png" href="./assets/img/logo-chu-S-shot-74-simp.png"/>
       <title>yushaku</title>
    </head>
    <body>
@@ -34,7 +34,8 @@
 
          <!-- ?rel=0&autoplay=1 -->
          <div id="banner">
-            <div class="img" style="background: rgba(51, 51, 51, 0.205) url('./assets/img/rose.jpg') no-repeat top left;"></div>
+            <div class="img" style="background: rgba(51, 51, 51, 0.205) url(./assets/img/rose.jpg) no-repeat top left ;"></div>
+            <!-- <video src="./assets/img/video5.mp4" type="video/mp4" loop="" muted="" autoplay=""></video> -->
          </div>
 
          <div class="pomodoro">
@@ -80,7 +81,6 @@
                <div class="listItem">
                   <div class="listItem_finish">
                      <ion-icon name="ellipse-outline"></ion-icon>
-                  <audio id="finishTodo" src="./assets/music/finish.mp3"></audio>
                   </div>
                   <div class="listItem_detail">
                      <h1>day là title</h1>
@@ -255,7 +255,16 @@
                   <!-- Header -->
                   <div class="songTitle">
                      <h2>this is name of song</h2>
+
+                     <div class="volume">
+                        <ion-icon name="volume-medium-outline"></ion-icon>
+                        <input type="range" class="volumeProcess" value="30" max="100"></input>
+                     </div>
+                     <div class="closeMusicButton">
+                        <ion-icon name="close-outline"></ion-icon>   
+                     </div>
                   </div>
+
 
                   <!-- CD -->
                   <div class="cd">
