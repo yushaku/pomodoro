@@ -28,7 +28,7 @@ const clock = $(".clock").FlipClock(0, {
                myPip.play()
                workDoneSection(document.querySelector("#pomodoroTask p").getAttribute("id-work") ?? 0);
 
-               if (countSession == LongbreakInterval) {
+               if (countSession == longbreakInterval) {
                   countSession = 0;
                   titleH1.html("long break");
                   clock.setTime(longBreakTime * 60 + 1);
