@@ -7,10 +7,11 @@ const config = JSON.parse(localStorage.getItem("POMODORO_SETTING")) || [];
 let studyTime = config.studyTime ?? 25;
 let breakTime = config.breakTime ?? 5;
 let longBreakTime = config.longBreakTime ?? 15;
-let countSession = 0;
-let LongbreakInterval = config.LongbreakInterval ?? 4;
+let longbreakInterval = config.LongbreakInterval ?? 4;
 let isAutoStudy = config.autoStartStudy ?? false;
 let isAutoBreak = config.autoStartBreak ?? false;
+let countSession = 0;
+
 
 const clock = $(".clock").FlipClock(0, {
    clockFace: "MinuteCounter",
@@ -55,6 +56,7 @@ const clock = $(".clock").FlipClock(0, {
       },
    },
 });
+
 clock.setTime(studyTime * 60);
 
 btnStart.on("click", function () {

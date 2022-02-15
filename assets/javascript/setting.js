@@ -135,14 +135,12 @@ function handleEvent() {
 function setDefault() {
 
    const pomodoroSetting = getDataFromLocalStorage(POMODORO_SETTING)
-
-   studyTimeInput.val(pomodoroSetting.studyTime ?? studyTime);
-   breakTimeInput.val(pomodoroSetting.breakTime ?? breakTime);
-   longBreakTimeInput.val(pomodoroSetting.longBreakTime ?? longBreakTime);
-   breakInervalInput.val(pomodoroSetting.LongbreakInterval ?? LongbreakInterval);
-   autoStartBreak.prop("checked", pomodoroSetting.autoStartBreak ?? isAutoBreak);
-   autoStartStudy.prop("checked", pomodoroSetting.autoStartStudy ?? isAutoStudy);
-
+   studyTimeInput.val(pomodoroSetting.studyTime ?? 25);
+   breakTimeInput.val(pomodoroSetting.breakTime ?? 5);
+   longBreakTimeInput.val(pomodoroSetting.longBreakTime ?? 15);
+   breakInervalInput.val(pomodoroSetting.LongbreakInterval ?? 4);
+   autoStartBreak.prop("checked", pomodoroSetting.autoStartBreak ?? false);
+   autoStartStudy.prop("checked", pomodoroSetting.autoStartStudy ?? false);
 }
 function openTodo() {
    $(".todo").toggleClass("openTodo");
