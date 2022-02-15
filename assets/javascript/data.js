@@ -1,9 +1,5 @@
 export const myBackgrounds= [
-   {
-      type: "img",
-      title: "work",
-      path: "./assets/img/work.jpg",
-   },
+
    {
       type: "img",
       title: "rose",
@@ -63,6 +59,12 @@ export const myBackgrounds= [
       type: "video",
       title: "code with me",
       path: "https://s3.us-east-2.amazonaws.com/lofi.co/lofi.co/scenes/chill-vibes/BDR%20STARRY%20NIGHT%20-.mp4",
+      video: "./assets/img/video5.mp4",
+   },
+   {
+      type: "video",
+      title: "code with me",
+      path: "https://s3.us-east-2.amazonaws.com/lofi.co/lofi.co/scenes/chill-vibes/BDR%20Day%20112521%20%281%29.mp4",
       video: "./assets/img/video5.mp4",
    },
 
