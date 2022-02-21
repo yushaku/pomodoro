@@ -40,7 +40,7 @@ function render(todos) {
                         ? "inFuture"
                         : "overdate"
                   }" >
-                     ${"deadline: " + moment(todo.date).toNow() + " left"}
+                     ${"deadline: " + moment(todo.date).fromNow()}
                   </span>
                </div>
             </div>
